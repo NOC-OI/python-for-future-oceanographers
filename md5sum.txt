@@ -10,5 +10,5 @@
 "instructors/extra_exercises.md" "901c4423e91c33edcf208e529ea7ae30" "site/built/extra_exercises.md" "2025-10-01"
 "instructors/instructor-notes.md" "cef176c3361aebec46674f12025d15f3" "site/built/instructor-notes.md" "2025-10-01"
 "learners/reference.md" "c6342a51536c85060d17158bb10c6738" "site/built/reference.md" "2025-10-01"
-"learners/setup.md" "41f490610b2cccc388bede87f5ddd74e" "site/built/setup.md" "2025-10-07"
+"learners/setup.md" "5598fdf67d8d34e2fc9aefe63bd6e170" "site/built/setup.md" "2025-10-13"
 "profiles/learner-profiles.md" "60b93493cf1da06dfd63255d73854461" "site/built/learner-profiles.md" "2025-10-01"
