@@ -70,19 +70,19 @@ Cell In[3], line 1
 ...
 ```
 
-This file is available from https://raw.githubusercontent.com/NOC-OI/python-intro-schools/refs/heads/main/data/argo_data.csv.
+This file is available from https://raw.githubusercontent.com/NOC-OI/python-for-future-oceanographers/refs/heads/main/data/argo_data.csv.
 
 We can download this using the external command `wget`. This is not part of Python and we can tell
 Jupyter to run it by starting the cell with an `!`. 
 
 ```python
-!wget https://raw.githubusercontent.com/NOC-OI/python-intro-schools/refs/heads/main/data/argo_data.csv
+!wget https://raw.githubusercontent.com/NOC-OI/python-for-future-oceanographers/refs/heads/main/data/argo_data.csv
 ```
 
 Or we can change the filename to the full web address and Numpy will get the file from the internet for us.
 
 ```python
-numpy.loadtxt(fname='https://raw.githubusercontent.com/NOC-OI/python-intro-schools/refs/heads/main/data/argo_data.csv', delimiter=',', skiprows=1)
+numpy.loadtxt(fname='https://raw.githubusercontent.com/NOC-OI/python-for-future-oceanographers/refs/heads/main/data/argo_data.csv', delimiter=',', skiprows=1)
 ```
 
 ```output
@@ -223,18 +223,17 @@ first value in data: 28.898001
 
 
 ```python
-print('middle temperature value in data:', data[54, 2])
+print('middle temperature value in data:', data[53, 2])
 ```
 
 
 ```output
-middle value in data: 9.278
+middle value in data: 9.876
 ```
 
 
-The expression `data[54, 2]` accesses the element at row 54, column 2. While this expression may
-not surprise you, using
- `data[0, 2]` to get the _3rd_ column in the _1st_ row might.
+The expression `data[53, 2]` accesses the element at the 54th row and 3rd column not 
+the 53rd row and 2nd column as you might think. 
 Programming languages like Fortran, MATLAB and R start counting at 1
 because that's what human beings have done for thousands of years.
 Languages in the C family (including C++, Java, Perl, and Python) count from 0
@@ -271,7 +270,7 @@ which can be confusing when plotting data.
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Slicing data
-An index like `[54, 2]` selects a single element of an array,
+An index like `[53, 2]` selects a single element of an array,
 but we can select whole sections as well.
 For example,
 we can select the Argo data for the first five readings like this:
