@@ -55,6 +55,38 @@ to show.
 numpy.set_printoptions(threshold=10)
 ```
 
+::::::::::::::::::::::::::::::::::::::::::  callout
+
+## Functions, Parameters and Return Values
+
+ * In the last episode we looked at using the `print` and `type` functions which are built into Python.
+ * We "call" a function by writing it's name followed by a `(`, then we can give the values of any
+parameters that the function might need. If there is more than one of these we separate each of them 
+with a comma. Finally we write a closing `)` to end the function call. 
+```python
+function_name(first_parameter, second_parameter)
+```
+ * Some functions don't need any parameters, so we just write `()` after the function name. 
+ ```python
+ function_name()
+ ```
+ * Parameters have to be given in the order the function expects them. 
+   Alternatively we can put a name infront of each paraemter followed by an `=` sign and the parameter 
+   value or the name of the variable we are sending.
+```python
+function_name(parameter_name=first_parameter_value)
+```   
+ * Functions can also send data back to the code which called them, this is known as "returning" data
+from a function. 
+ * We can save this return data into a variable to use it again later. If we 
+don't save it into a variable then it's value is displayed on the screen. 
+```python
+my_variable = function_name(first_parameter)
+```
+ * When we import a library like `NumpPy` more functions become available to us. 
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
 Once we've imported the `NumpPy` library, we can ask it to read our data file for us:
 
 ```python
@@ -79,7 +111,7 @@ Jupyter to run it by starting the cell with an `!`.
 !wget https://raw.githubusercontent.com/NOC-OI/python-for-future-oceanographers/refs/heads/main/data/argo_data.csv
 ```
 
-Or we can change the filename to the full web address and Numpy will get the file from the internet for us.
+Or we can change the filename to the full web address and Numpy will get the file from the Internet for us.
 
 ```python
 numpy.loadtxt(fname='https://raw.githubusercontent.com/NOC-OI/python-for-future-oceanographers/refs/heads/main/data/argo_data.csv', delimiter=',', skiprows=1)
