@@ -269,6 +269,43 @@ which can be confusing when plotting data.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
+
+
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+## Explore the data
+
+Download the data above using the wget command:
+
+`!wget https://raw.githubusercontent.com/NOC-OI/python-for-future-oceanographers/refs/heads/main/data/argo_data.csv`
+
+You should then see a file called `argo_data.csv` appear in the file manager on the left hand side of your screen.
+Click on this file and open it.
+
+What values do columns 1, 2 and 3 represent?
+
+Now load the data using NumPy and write some Python code to find out temperature of data in the last row.
+
+
+:::::::::::::::  solution
+
+Column 1 is salinity, column 2 is temperature and column 3 is pressure. 
+
+We can find the final temperature value on row 107, column 2 (counting from zero).
+```python
+import numpy
+data = numpy.loadtxt(fname="argo_data.csv", delimiter=',', skiprows=1)
+print(data[107,2])
+```
+
+The temperature value on the last row is 3.693 degrees celcius.
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+
 ## Slicing data
 An index like `[53, 2]` selects a single element of an array,
 but we can select whole sections as well.
