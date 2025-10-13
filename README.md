@@ -6,7 +6,7 @@ An introduction to Python for non-programmers using oceanography data.
 
 If you cannot install Anaconda/Python on your computer, then you can launch a Jupyter Lab instance online using MyBinder. Click on the Launch Binder icon below to do this.
 
-[![Run this lesson on MyBinder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/NOC-OI/python-intro-schools/binder)
+[![Run this lesson on MyBinder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/NOC-OI/python-for-future-oceanographers/binder)
 
 ## About the Lesson
 
