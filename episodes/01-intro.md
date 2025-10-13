@@ -182,13 +182,13 @@ To change the value of the `weight_kg` variable, we have to
 **assign** `weight_kg` a new value using the equals `=` sign:
 
 ```python
-weight_kg = 75.0
+weight_kg = 65.0
 print('weight in kilograms is now:', weight_kg)
 ```
 
 
 ```output
-weight in kilograms is now: 75.0
+weight in kilograms is now: 65.0
 ```
 
 
