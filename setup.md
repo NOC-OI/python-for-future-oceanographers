@@ -12,7 +12,7 @@ As an emergency fallback a pre-configured MyBinder image is available which will
 with any other system then use this. Click on the "launch binder" icon below. Please note that this system
 does not have many computational resources and will stop your notebook if you leave it idle for a few minutes. 
 
-[![Run this lesson on MyBinder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/NOC-OI/python-intro-schools/binder)
+[![Run this lesson on MyBinder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/NOC-OI/python-for-future-oceanographers/binder)
 
 
 ## If you really want/need to run this on your own computer
