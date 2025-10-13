@@ -6,7 +6,10 @@ exercises: 10
 
 ::::::::::::::::::::::::::::::::::::::::::  objectives
 
+- "Perform simple calculations."
 - "Assign values to variables."
+- "Understand the difference between int, float and str data types."
+- "Use the print and type built-in functions."
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -14,8 +17,8 @@ exercises: 10
 
 - "What basic data types can I work with in Python?"
 - "How can I create a new variable in Python?"
-- "How do I use a function?"
 - "Can I change the value associated with a variable after I create it?"
+- "How do I use a function?"
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -117,14 +120,13 @@ print(patient_id)
 inflam_001
 ```
 
-
 When we want to make use of a function, referred to as calling the function,
 we follow its name by parentheses. The parentheses are important:
 if you leave them off, the function doesn't actually run!
 Sometimes you will include values or variables inside the parentheses for the function to use.
 In the case of `print`,
 we use the parentheses to tell the function what value we want to display.
-We will learn more about how functions work and how to create our own in later episodes.
+We will learn more about how functions work in later episodes.
 
 We can display multiple things at once using only one `print` call:
 
@@ -316,6 +318,7 @@ print(type(distance))
 - "Use `variable = value` to assign a value to a variable in order to record it in memory."
 - "Variables are created on demand whenever a value is assigned to them."
 - "Use `print(something)` to display the value of `something`."
+- Functions take zero or more parameters that send a value or variable to the code in the function to use.
 - "Built-in functions are always available to use."
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
