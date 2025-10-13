@@ -67,6 +67,23 @@ Once the install script completes, you can remove it.
 rm Miniforge3-$(uname)-$(uname -m).sh
 ```
 
+##### Initalizing Conda (Mac and Linux Only)
+
+Near the end of the installation you will be asked if you wish to initialize conda. This will place the
+conda executables in your path, meaning your system can easily find them. You want to do this.
+
+When asked the following question:
+
+```output
+Do you wish to update your shell profile to automatically initialize conda?
+This will activate conda on startup and change the command prompt when activated.
+```
+
+Answer with "yes" (the default is no). 
+If you pressed enter during the install and followed the default no then you can fix this typing
+`conda init` immediately after running the installer. 
+
+In order for these settings to be found you might need to close and re-open your terminal to apply the new path settings.
 
 #### Verifying your Conda installation
 
