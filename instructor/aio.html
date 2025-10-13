@@ -986,16 +986,58 @@ the same reason, which can be confusing when plotting data.</p>
 </div>
 </div>
 </div>
+<div id="explore-the-data" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="explore-the-data" class="callout-inner">
+<h3 class="callout-title">Explore the data</h3>
+<div class="callout-content">
+<p>Download the data above using the wget command:</p>
+<p><code>!wget https://raw.githubusercontent.com/NOC-OI/python-for-future-oceanographers/refs/heads/main/data/argo_data.csv</code></p>
+<p>You should then see a file called <code>argo_data.csv</code> appear
+in the file manager on the left hand side of your screen. Click on this
+file and open it.</p>
+<p>What values do columns 1, 2 and 3 represent?</p>
+<p>Now load the data using NumPy and write some Python code to find out
+temperature of data in the last row.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div class="accordion-body">
+<p>Column 1 is salinity, column 2 is temperature and column 3 is
+pressure.</p>
+<p>We can find the final temperature value on row 107, column 2
+(counting from zero).</p>
+<div class="codewrapper sourceCode" id="cb21">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="im">import</span> numpy</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>data <span class="op">=</span> numpy.loadtxt(fname<span class="op">=</span><span class="st">"argo_data.csv"</span>, delimiter<span class="op">=</span><span class="st">','</span>, skiprows<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a><span class="bu">print</span>(data[<span class="dv">107</span>,<span class="dv">2</span>])</span></code></pre>
+</div>
+<p>The temperature value on the last row is 3.693 degrees celcius.</p>
+</div>
+</div>
+</div>
+</div>
 </section><section><h2 class="section-heading" id="slicing-data">Slicing data<a class="anchor" aria-label="anchor" href="#slicing-data"></a>
 </h2>
 <hr class="half-width">
 <p>An index like <code>[53, 2]</code> selects a single element of an
 array, but we can select whole sections as well. For example, we can
 select the Argo data for the first five readings like this:</p>
-<div class="codewrapper sourceCode" id="cb21">
+<div class="codewrapper sourceCode" id="cb22">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="bu">print</span>(data[<span class="dv">0</span>:<span class="dv">5</span>, <span class="dv">0</span>:<span class="dv">4</span>])</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="bu">print</span>(data[<span class="dv">0</span>:<span class="dv">5</span>, <span class="dv">0</span>:<span class="dv">4</span>])</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1012,10 +1054,10 @@ up-to-but-not-including takes a bit of getting used to, but the rule is
 that the difference between the upper and lower bounds is the number of
 values in the slice.</p>
 <p>We don’t have to start slices at 0:</p>
-<div class="codewrapper sourceCode" id="cb23">
+<div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="bu">print</span>(data[<span class="dv">5</span>:<span class="dv">10</span>, <span class="dv">1</span>:<span class="dv">4</span>])</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="bu">print</span>(data[<span class="dv">5</span>:<span class="dv">10</span>, <span class="dv">1</span>:<span class="dv">4</span>])</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1031,12 +1073,12 @@ If we don’t include the lower bound, Python uses 0 by default; if we
 don’t include the upper, the slice runs to the end of the axis, and if
 we don’t include either (i.e., if we use ‘:’ on its own), the slice
 includes everything:</p>
-<div class="codewrapper sourceCode" id="cb25">
+<div class="codewrapper sourceCode" id="cb26">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a>first_five <span class="op">=</span> data[:<span class="dv">5</span>, <span class="dv">1</span>:]</span>
-<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'data from first five readings is:'</span>)</span>
-<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a><span class="bu">print</span>(first_five)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a>first_five <span class="op">=</span> data[:<span class="dv">5</span>, <span class="dv">1</span>:]</span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'data from first five readings is:'</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a><span class="bu">print</span>(first_five)</span></code></pre>
 </div>
 <p>The above example selects rows 0 through 4 and columns 1 through to
 the end of the array (which gives us the salinity, temperature and
@@ -1061,12 +1103,12 @@ depth).</p>
 <div class="callout-content">
 <p>A section of an array is called a <a href="reference.html#slice">slice</a>. We can take slices of character
 strings as well:</p>
-<div class="codewrapper sourceCode" id="cb27">
+<div class="codewrapper sourceCode" id="cb28">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a>element <span class="op">=</span> <span class="st">'oxygen'</span></span>
-<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'first three characters:'</span>, element[<span class="dv">0</span>:<span class="dv">3</span>])</span>
-<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'last three characters:'</span>, element[<span class="dv">3</span>:<span class="dv">6</span>])</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a>element <span class="op">=</span> <span class="st">'oxygen'</span></span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'first three characters:'</span>, element[<span class="dv">0</span>:<span class="dv">3</span>])</span>
+<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'last three characters:'</span>, element[<span class="dv">3</span>:<span class="dv">6</span>])</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1079,12 +1121,12 @@ last three characters: gen</code></pre>
 </div>
 </div>
 </div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1108,11 +1150,11 @@ last three characters: gen</code></pre>
 <p>Generally, a function uses inputs to produce outputs. However, some
 functions produce outputs without needing any input. For example,
 checking the current time doesn’t require any input.</p>
-<div class="codewrapper sourceCode" id="cb30">
+<div class="codewrapper sourceCode" id="cb31">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a><span class="bu">print</span>(time.ctime())</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a><span class="bu">print</span>(time.ctime())</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1138,10 +1180,10 @@ library called <code>argopy</code> has been developed. This can load
 data directly from one of the GDACs and turn it into a Numpy array. This
 saves us having to search through the GDAC, picking the data we want and
 downloading it to a file on our computer.</p>
-<div class="codewrapper sourceCode" id="cb32">
+<div class="codewrapper sourceCode" id="cb33">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="im">import</span> argopy</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="im">import</span> argopy</span></code></pre>
 </div>
 <p>The <code>argopy</code> library has a lot of different features, but
 we want to use the <code>DataFetcher</code> function which gets data
@@ -1150,10 +1192,10 @@ called a class that has more functions we can call. One of these is
 called <code>profile</code> and that gets an individual profile given a
 float number and a profile number. The data we’ve been using came from
 profile 12 of float number 6902746.</p>
-<div class="codewrapper sourceCode" id="cb33">
+<div class="codewrapper sourceCode" id="cb34">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a>argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a>argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>)</span></code></pre>
 </div>
 <p>If we run the profile function with the float number and profile
 number we get back a <code>datafetcher.erddap</code> object.</p>
@@ -1174,37 +1216,37 @@ another function that the <code>datafetcher.erdapp</code> object
 provides called <code>to_xarray</code>. This gets the data ready for
 processing using another library called Xarray, which works well with
 Numpy data but is very good at working with really big datasets.</p>
-<div class="codewrapper sourceCode" id="cb35">
+<div class="codewrapper sourceCode" id="cb36">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a>argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>).to_xarray()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a>argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>).to_xarray()</span></code></pre>
 </div>
 <p>Now we get a lot more information including a list of what data
 variables this float has. To get one of those we add its name to the end
 of the command; for example, to get temperature we add
 <code>.TEMP</code>.</p>
-<div class="codewrapper sourceCode" id="cb36">
+<div class="codewrapper sourceCode" id="cb37">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a>argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>).to_xarray().TEMP</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a>argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>).to_xarray().TEMP</span></code></pre>
 </div>
 <p>Now we have something which just looks like real data. However one
 last thing, the type of this data is <code>xarray.DataArray</code> not
 <code>numpy.ndarray</code>. To do that final conversion we add
 <code>.values</code> on the end (note that there’s no brackets on this
 as this is a variable name not a function).</p>
-<div class="codewrapper sourceCode" id="cb37">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a>argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>).to_xarray().TEMP.values</span></code></pre>
-</div>
-<p>Let’s capture this into a variable called <code>temp_data</code> and
-check it’s type.</p>
 <div class="codewrapper sourceCode" id="cb38">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a>temp_data<span class="op">=</span>argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>).to_xarray().TEMP.values</span>
-<span id="cb38-2"><a href="#cb38-2" tabindex="-1"></a><span class="bu">type</span>(temp_data)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a>argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>).to_xarray().TEMP.values</span></code></pre>
+</div>
+<p>Let’s capture this into a variable called <code>temp_data</code> and
+check it’s type.</p>
+<div class="codewrapper sourceCode" id="cb39">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a>temp_data<span class="op">=</span>argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>).to_xarray().TEMP.values</span>
+<span id="cb39-2"><a href="#cb39-2" tabindex="-1"></a><span class="bu">type</span>(temp_data)</span></code></pre>
 </div>
 <p>and now we have a Numpy array with our temperature data.</p>
 <div class="codewrapper">
@@ -1232,10 +1274,10 @@ the CSV file they got rounded a little bit.</p>
 perform operations on its values. If we want to find the average of all
 our Argo float data, for example, we can ask NumPy to compute
 <code>data</code>’s mean value:</p>
-<div class="codewrapper sourceCode" id="cb42">
+<div class="codewrapper sourceCode" id="cb43">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a><span class="bu">print</span>(numpy.mean(data))</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a><span class="bu">print</span>(numpy.mean(data))</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1248,10 +1290,10 @@ contains the sequence numbers and three different data variables taking
 the mean of the whole array doesn’t really make much sense.</p>
 <p>We can use slicing to calculate the mean temperature from our
 dive:</p>
-<div class="codewrapper sourceCode" id="cb44">
+<div class="codewrapper sourceCode" id="cb45">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a><span class="bu">print</span>(numpy.mean(data[:,<span class="dv">2</span>]))</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a><span class="bu">print</span>(numpy.mean(data[:,<span class="dv">2</span>]))</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1260,14 +1302,14 @@ dive:</p>
 </div>
 <p>Let’s use two other NumPy functions to get some descriptive values
 about the temperature range.</p>
-<div class="codewrapper sourceCode" id="cb46">
+<div class="codewrapper sourceCode" id="cb47">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a>maxval <span class="op">=</span> numpy.<span class="bu">max</span>(data[:,<span class="dv">2</span>])</span>
-<span id="cb46-2"><a href="#cb46-2" tabindex="-1"></a>minval <span class="op">=</span> numpy.<span class="bu">min</span>(data[:,<span class="dv">2</span>])</span>
-<span id="cb46-3"><a href="#cb46-3" tabindex="-1"></a></span>
-<span id="cb46-4"><a href="#cb46-4" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Max temperature:'</span>, maxval)</span>
-<span id="cb46-5"><a href="#cb46-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Min temperature:'</span>, minval)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" tabindex="-1"></a>maxval <span class="op">=</span> numpy.<span class="bu">max</span>(data[:,<span class="dv">2</span>])</span>
+<span id="cb47-2"><a href="#cb47-2" tabindex="-1"></a>minval <span class="op">=</span> numpy.<span class="bu">min</span>(data[:,<span class="dv">2</span>])</span>
+<span id="cb47-3"><a href="#cb47-3" tabindex="-1"></a></span>
+<span id="cb47-4"><a href="#cb47-4" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Max temperature:'</span>, maxval)</span>
+<span id="cb47-5"><a href="#cb47-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Min temperature:'</span>, minval)</span></code></pre>
 </div>
 <p>Here we’ve assigned the return value from
 <code>numpy.max(data[:,2])</code> to the variable <code>maxval</code>
@@ -1321,27 +1363,27 @@ to find out how to calculate this.</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb48">
+<div class="codewrapper sourceCode" id="cb49">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a>temperatures <span class="op">=</span> argopy.DataFetcher().profile(<span class="dv">5906983</span>, <span class="dv">33</span>).to_xarray().TEMP.values</span>
-<span id="cb48-2"><a href="#cb48-2" tabindex="-1"></a></span>
-<span id="cb48-3"><a href="#cb48-3" tabindex="-1"></a>maxval <span class="op">=</span> numpy.<span class="bu">max</span>(temperatures)</span>
-<span id="cb48-4"><a href="#cb48-4" tabindex="-1"></a>minval <span class="op">=</span> numpy.<span class="bu">min</span>(temperatures)</span>
-<span id="cb48-5"><a href="#cb48-5" tabindex="-1"></a>meanval <span class="op">=</span> numpy.mean(temperatures)</span>
-<span id="cb48-6"><a href="#cb48-6" tabindex="-1"></a>medianval <span class="op">=</span> numpy.median(temperatures)</span>
-<span id="cb48-7"><a href="#cb48-7" tabindex="-1"></a></span>
-<span id="cb48-8"><a href="#cb48-8" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Max temperature:'</span>, maxval)</span>
-<span id="cb48-9"><a href="#cb48-9" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Min temperature:'</span>, minval)</span>
-<span id="cb48-10"><a href="#cb48-10" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Mean Temperature:'</span>, meanval)</span>
-<span id="cb48-11"><a href="#cb48-11" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Median Temperature:'</span>, medianval)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" tabindex="-1"></a>temperatures <span class="op">=</span> argopy.DataFetcher().profile(<span class="dv">5906983</span>, <span class="dv">33</span>).to_xarray().TEMP.values</span>
+<span id="cb49-2"><a href="#cb49-2" tabindex="-1"></a></span>
+<span id="cb49-3"><a href="#cb49-3" tabindex="-1"></a>maxval <span class="op">=</span> numpy.<span class="bu">max</span>(temperatures)</span>
+<span id="cb49-4"><a href="#cb49-4" tabindex="-1"></a>minval <span class="op">=</span> numpy.<span class="bu">min</span>(temperatures)</span>
+<span id="cb49-5"><a href="#cb49-5" tabindex="-1"></a>meanval <span class="op">=</span> numpy.mean(temperatures)</span>
+<span id="cb49-6"><a href="#cb49-6" tabindex="-1"></a>medianval <span class="op">=</span> numpy.median(temperatures)</span>
+<span id="cb49-7"><a href="#cb49-7" tabindex="-1"></a></span>
+<span id="cb49-8"><a href="#cb49-8" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Max temperature:'</span>, maxval)</span>
+<span id="cb49-9"><a href="#cb49-9" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Min temperature:'</span>, minval)</span>
+<span id="cb49-10"><a href="#cb49-10" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Mean Temperature:'</span>, meanval)</span>
+<span id="cb49-11"><a href="#cb49-11" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Median Temperature:'</span>, medianval)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
