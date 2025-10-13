@@ -275,7 +275,7 @@ which can be confusing when plotting data.
 :::::::::::::::::::::::::::::::::::::::  challenge
 ## Explore the data
 
-Download the data above using the wget command:
+If you haven't already, download the data we have been using with the `wget` command:
 
 `!wget https://raw.githubusercontent.com/NOC-OI/python-for-future-oceanographers/refs/heads/main/data/argo_data.csv`
 
@@ -284,7 +284,8 @@ Click on this file and open it.
 
 What values do columns 1, 2 and 3 represent?
 
-Now load the data using NumPy and write some Python code to find out temperature of data in the last row.
+Now load the data using NumPy and write some Python code to read from the data. 
+What is the temperature on the last row of the data?
 
 
 :::::::::::::::  solution
@@ -295,6 +296,7 @@ We can find the final temperature value on row 107, column 2 (counting from zero
 ```python
 import numpy
 data = numpy.loadtxt(fname="argo_data.csv", delimiter=',', skiprows=1)
+#there are 108 rows to the data, so row number 107 is the last one because we started from 0
 print(data[107,2])
 ```
 
