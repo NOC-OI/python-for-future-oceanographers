@@ -15,7 +15,7 @@ This lesson teaches novice programmers to perform data analysis using Python.
 The example used in this lesson analyses some Argo float data. 
 
 The rendered version of the lesson is available at:
-<https://noc-oi.github.io/python-intro-schools/>.
+<https://noc-oi.github.io/python-for-future-oceanographers/>.
 
 This lesson is derived from the [Essential Computing Skills for Environmental Scientists course](esces_course) by [Neil Chue Hong](npch), [Chris Wood](chris_wood), [Lucy Bricheno](lucy_b), and [Daniel Barker](daniel_b). That is in turn derived from the Software Carpentry [Analaysis of Inflammation Data lesson](inflammation_lesson). 
 
