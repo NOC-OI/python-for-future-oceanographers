@@ -584,14 +584,15 @@ the same reason, which can be confusing when plotting data.</p>
 <div id="explore-the-data" class="callout-inner">
 <h3 class="callout-title">Explore the data</h3>
 <div class="callout-content">
-<p>Download the data above using the wget command:</p>
+<p>If you haven’t already, download the data we have been using with the
+<code>wget</code> command:</p>
 <p><code>!wget https://raw.githubusercontent.com/NOC-OI/python-for-future-oceanographers/refs/heads/main/data/argo_data.csv</code></p>
 <p>You should then see a file called <code>argo_data.csv</code> appear
 in the file manager on the left hand side of your screen. Click on this
 file and open it.</p>
 <p>What values do columns 1, 2 and 3 represent?</p>
-<p>Now load the data using NumPy and write some Python code to find out
-temperature of data in the last row.</p>
+<p>Now load the data using NumPy and write some Python code to read from
+the data. What is the temperature on the last row of the data?</p>
 </div>
 </div>
 </div>
@@ -600,7 +601,7 @@ temperature of data in the last row.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Column 1 is salinity, column 2 is temperature and column 3 is
 pressure.</p>
@@ -611,7 +612,8 @@ pressure.</p>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="im">import</span> numpy</span>
 <span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>data <span class="op">=</span> numpy.loadtxt(fname<span class="op">=</span><span class="st">"argo_data.csv"</span>, delimiter<span class="op">=</span><span class="st">','</span>, skiprows<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a><span class="bu">print</span>(data[<span class="dv">107</span>,<span class="dv">2</span>])</span></code></pre>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a><span class="co">#there are 108 rows to the data, so row number 107 is the last one because we started from 0</span></span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a><span class="bu">print</span>(data[<span class="dv">107</span>,<span class="dv">2</span>])</span></code></pre>
 </div>
 <p>The temperature value on the last row is 3.693 degrees celcius.</p>
 </div>
@@ -714,7 +716,7 @@ last three characters: gen</code></pre>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -952,7 +954,7 @@ to find out how to calculate this.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb49">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
