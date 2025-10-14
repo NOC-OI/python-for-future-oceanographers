@@ -439,9 +439,9 @@ oxygen
 Generally, a function uses inputs to produce outputs.
 However, some functions produce outputs without
 needing any input. These functions don't need any parameters, so we just write `()` after the function name. 
- ```python
- function_name()
- ```
+```python
+function_name()
+```
 For example, checking the current time
 doesn't require any input.
 ```python
