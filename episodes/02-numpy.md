@@ -60,7 +60,7 @@ numpy.set_printoptions(threshold=10)
 ## Functions, Parameters and Return Values
 
  * In the last episode we looked at using the `print` and `type` functions which are built into Python.
- * We "call" a function by writing it's name followed by a `(`, then we can give the values of any
+ * We "call" a function by writing its name followed by a `(`, then we can give the values of any
 parameters that the function might need. If there is more than one of these we separate each of them 
 with a comma. Finally we write a closing `)` to end the function call. 
 ```python
@@ -71,7 +71,7 @@ function_name(first_parameter, second_parameter)
  function_name()
  ```
  * Parameters have to be given in the order the function expects them. 
-   Alternatively we can put a name infront of each paraemter followed by an `=` sign and the parameter 
+   Alternatively we can put a name in front of each paraemter followed by an `=` sign and the parameter 
    value or the name of the variable we are sending.
 ```python
 function_name(parameter_name=first_parameter_value)
@@ -79,7 +79,7 @@ function_name(parameter_name=first_parameter_value)
  * Functions can also send data back to the code which called them, this is known as "returning" data
 from a function. 
  * We can save this return data into a variable to use it again later. If we 
-don't save it into a variable then it's value is displayed on the screen. 
+don't save it into a variable then its value is displayed on the screen. 
 ```python
 my_variable = function_name(first_parameter)
 ```
