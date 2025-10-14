@@ -66,10 +66,6 @@ with a comma. Finally we write a closing `)` to end the function call.
 ```python
 function_name(first_parameter, second_parameter)
 ```
- * Some functions don't need any parameters, so we just write `()` after the function name. 
- ```python
- function_name()
- ```
  * Parameters have to be given in the order the function expects them. 
    Alternatively we can put a name in front of each paraemter followed by an `=` sign and the parameter 
    value or the name of the variable we are sending.
@@ -442,7 +438,11 @@ oxygen
 ## Not All Functions Have Input
 Generally, a function uses inputs to produce outputs.
 However, some functions produce outputs without
-needing any input. For example, checking the current time
+needing any input. These functions don't need any parameters, so we just write `()` after the function name. 
+ ```python
+ function_name()
+ ```
+For example, checking the current time
 doesn't require any input.
 ```python
 import time
@@ -451,8 +451,7 @@ print(time.ctime())
 ```output
 Sat Mar 26 13:07:33 2016
 ```
-For functions that don't take in any arguments,
-we still need parentheses (`()`)
+We still need parentheses (`()`)
 to tell Python to go and do something for us.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
