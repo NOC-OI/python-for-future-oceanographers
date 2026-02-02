@@ -58,16 +58,6 @@ image = matplotlib.pyplot.plot(temperature)
 
 The X axis corresponds to each row in the data and the Y axis is temperature in degrees celcius. 
 
-## Graphing Salinity Data
-
-Now let's take a look at the pressure and salinity during our Argo float's dive. 
-
-```python
-salinity_plot = matplotlib.pyplot.plot(salinity)
-```
-
-![](fig/salinity_plot.png){alt="A line graph showing the salinity readings from the Argo float data."}
-
 ### Adding Labels to a Graph
 
 It's good practice to add axes labels to our graphs, these can be done with the `xlabel` and `ylabel` functions in `matplolib.pyplot`.
@@ -80,33 +70,6 @@ temperature_plot = matplotlib.pyplot.plot(temperature)
 
 
 ![](fig/temperature_plot_with_labels.png){alt="A line graph showing the temperatuer from the Argo data with axes labels."}
-
-
-::::::::::::::::::::::::::::::::::::::::::  callout
-
-## Importing libraries with shortcuts
-
-So far we use have used the code `import matplotlib.pyplot`
-[syntax](learners/reference.md#syntax)
-to import the `pyplot` module of `matplotlib`. An alternative method for importing is to use
-`import matplotlib.pyplot as plt`.
-Importing `pyplot` this way means that after the initial import, rather than writing
-`matplotlib.pyplot.plot(...)`, you can now write `plt.plot(...)`.
-Another common convention is to use the shortcut `import numpy as np` when importing the
-NumPy library. We then can write `np.loadtxt(...)` instead of `numpy.loadtxt(...)`,
-for example.
-
-Some people prefer these shortcuts as it is quicker to type and results in shorter
-lines of code - especially for libraries with long names! You will frequently see
-Python code online using a `pyplot` function with `plt`, or a NumPy function with
-`np`, and it's because they've used this shortcut. It makes no difference which
-approach you choose to take, but you must be consistent as if you use
-`import matplotlib.pyplot as plt` then `matplotlib.pyplot.plot(...)` will not work, and
-you must use `plt.plot(...)` instead. Because of this, when working with other people it
-is important you agree on how libraries are imported. From this point onwards this lesson uses
-`plt` to mean `matplotlib.pyplot`.
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
 :::::::::::::::::::::::::::::::::::::::  challenge
@@ -126,23 +89,6 @@ pres_plot = plt.plot(pressure)
 :::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-
-### Saving Plots
-We can call the `savefig` function to store the plot as a graphics file. This can be
-a convenient way to store your plots for use in other documents, web
-pages etc. The graphics format is automatically determined by
-Matplotlib from the file name ending we specify; here the format is PNG from
-'argo6902746-profile12-temperature.png'. Matplotlib supports many different graphics
-formats, including SVG, PDF, and JPEG.
-
-```python
-matplotlib.pyplot.ylabel("Temperature (Degrees C)")
-matplotlib.pyplot.xlabel("Reading Number")
-temperature_plot = matplotlib.pyplot.plot(temperature)
-matplotlib.pyplot.savefig("argo6902746-profile12-temperature.png")
-```
-
-![](fig/argo6902746-profile12.png){alt="Three line graphs showing the temperature, salinity and presssure."}
 
 ## Plot using Argopy
 
