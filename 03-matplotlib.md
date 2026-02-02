@@ -162,7 +162,6 @@ fig = argopy.plot.scatter_plot(float_data.to_xarray(), 'PSAL')
 ::::::::::::::::::::::::::::::::::::::::::::::  keypoints
 
 - "Use the `pyplot` module from the `matplotlib` library for creating simple visualisations."
-- "We can give imported modules a short name by using the `as` keyword after the import."
 - "Argopy has its own built in visaulisation functions"
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
