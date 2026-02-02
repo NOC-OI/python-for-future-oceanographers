@@ -228,7 +228,6 @@
         <ul><li><a href="#visualizing-data">Visualizing data</a></li>
 <li><a href="#ensuring-we-have-loaded-the-data">Ensuring we have Loaded the Data</a></li>
 <li><a href="#graphing-temperature-data">Graphing Temperature Data</a></li>
-<li><a href="#graphing-salinity-data">Graphing Salinity Data</a></li>
 <li><a href="#plot-using-argopy">Plot using Argopy</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
@@ -294,7 +293,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Visualizing Argo Data</h1>
-        <p>Last updated on 2025-10-07 |
+        <p>Last updated on 2026-02-02 |
 
         <a href="https://github.com/noc-oi/python-intro-schools/edit/main/episodes/03-matplotlib.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -364,61 +363,19 @@ pyplot’s <code>plot</code> function to plot the temperature data.</p>
 </div>
 <figure><img src="fig/temperature_plot.png" alt="A line graph representing the temperature readings from the Argo float data." class="figure mx-auto d-block"></figure><p>The X axis corresponds to each row in the data and the Y axis is
 temperature in degrees celcius.</p>
-</section><section><h2 class="section-heading" id="graphing-salinity-data">Graphing Salinity Data<a class="anchor" aria-label="anchor" href="#graphing-salinity-data"></a></h2>
-<hr class="half-width"><p>Now let’s take a look at the pressure and salinity during our Argo
-float’s dive.</p>
-<div class="codewrapper sourceCode" id="cb3">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>salinity_plot <span class="op">=</span> matplotlib.pyplot.plot(salinity)</span></code></pre>
-</div>
-<figure><img src="fig/salinity_plot.png" alt="A line graph showing the salinity readings from the Argo float data." class="figure mx-auto d-block"></figure><div class="section level3">
+<div class="section level3">
 <h3 id="adding-labels-to-a-graph">Adding Labels to a Graph<a class="anchor" aria-label="anchor" href="#adding-labels-to-a-graph"></a></h3>
 <p>It’s good practice to add axes labels to our graphs, these can be
 done with the <code>xlabel</code> and <code>ylabel</code> functions in
 <code>matplolib.pyplot</code>.</p>
-<div class="codewrapper sourceCode" id="cb4">
+<div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>matplotlib.pyplot.ylabel(<span class="st">"Temperature (Degrees C)"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>matplotlib.pyplot.xlabel(<span class="st">"Reading Number"</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>temperature_plot <span class="op">=</span> matplotlib.pyplot.plot(temperature)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>matplotlib.pyplot.ylabel(<span class="st">"Temperature (Degrees C)"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>matplotlib.pyplot.xlabel(<span class="st">"Reading Number"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>temperature_plot <span class="op">=</span> matplotlib.pyplot.plot(temperature)</span></code></pre>
 </div>
-<figure><img src="fig/temperature_plot_with_labels.png" alt="A line graph showing the temperatuer from the Argo data with axes labels." class="figure mx-auto d-block"></figure><div id="importing-libraries-with-shortcuts" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<span class="callout-header">Callout</span>
-<div id="importing-libraries-with-shortcuts" class="callout-inner">
-<h3 class="callout-title">Importing libraries with shortcuts</h3>
-<div class="callout-content">
-<p>So far we use have used the code
-<code>import matplotlib.pyplot</code> <a href="reference.html#syntax">syntax</a> to import the
-<code>pyplot</code> module of <code>matplotlib</code>. An alternative
-method for importing is to use
-<code>import matplotlib.pyplot as plt</code>. Importing
-<code>pyplot</code> this way means that after the initial import, rather
-than writing <code>matplotlib.pyplot.plot(...)</code>, you can now write
-<code>plt.plot(...)</code>. Another common convention is to use the
-shortcut <code>import numpy as np</code> when importing the NumPy
-library. We then can write <code>np.loadtxt(...)</code> instead of
-<code>numpy.loadtxt(...)</code>, for example.</p>
-<p>Some people prefer these shortcuts as it is quicker to type and
-results in shorter lines of code - especially for libraries with long
-names! You will frequently see Python code online using a
-<code>pyplot</code> function with <code>plt</code>, or a NumPy function
-with <code>np</code>, and it’s because they’ve used this shortcut. It
-makes no difference which approach you choose to take, but you must be
-consistent as if you use <code>import matplotlib.pyplot as plt</code>
-then <code>matplotlib.pyplot.plot(...)</code> will not work, and you
-must use <code>plt.plot(...)</code> instead. Because of this, when
-working with other people it is important you agree on how libraries are
-imported. From this point onwards this lesson uses <code>plt</code> to
-mean <code>matplotlib.pyplot</code>.</p>
-</div>
-</div>
-</div>
-<div id="plot-the-pressure-data" class="callout challenge">
+<figure><img src="fig/temperature_plot_with_labels.png" alt="A line graph showing the temperatuer from the Argo data with axes labels." class="figure mx-auto d-block"></figure><div id="plot-the-pressure-data" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
@@ -437,37 +394,19 @@ mean <code>matplotlib.pyplot</code>.</p>
 </button>
 <div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>plt.xlabel(<span class="st">"Reading number"</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>plt.ylabel(<span class="st">"Depth (metres)"</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>pres_plot <span class="op">=</span> plt.plot(pressure)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>plt.xlabel(<span class="st">"Reading number"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>plt.ylabel(<span class="st">"Depth (metres)"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>pres_plot <span class="op">=</span> plt.plot(pressure)</span></code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="section level3">
-<h3 id="saving-plots">Saving Plots<a class="anchor" aria-label="anchor" href="#saving-plots"></a></h3>
-<p>We can call the <code>savefig</code> function to store the plot as a
-graphics file. This can be a convenient way to store your plots for use
-in other documents, web pages etc. The graphics format is automatically
-determined by Matplotlib from the file name ending we specify; here the
-format is PNG from ‘argo6902746-profile12-temperature.png’. Matplotlib
-supports many different graphics formats, including SVG, PDF, and
-JPEG.</p>
-<div class="codewrapper sourceCode" id="cb6">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>matplotlib.pyplot.ylabel(<span class="st">"Temperature (Degrees C)"</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>matplotlib.pyplot.xlabel(<span class="st">"Reading Number"</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>temperature_plot <span class="op">=</span> matplotlib.pyplot.plot(temperature)</span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>matplotlib.pyplot.savefig(<span class="st">"argo6902746-profile12-temperature.png"</span>)</span></code></pre>
-</div>
-<figure><img src="fig/argo6902746-profile12.png" alt="Three line graphs showing the temperature, salinity and presssure." class="figure mx-auto d-block"></figure></div>
 </section><section><h2 class="section-heading" id="plot-using-argopy">Plot using Argopy<a class="anchor" aria-label="anchor" href="#plot-using-argopy"></a></h2>
 <hr class="half-width"><p>Instead of calling functions in Matplotlib we can also call some
 plotting functions within Argopy (and these will call Matplotlib for
@@ -478,11 +417,11 @@ us). This offers two advantages:</p>
 <h3 id="plotting-a-map-of-where-our-float-has-travelled">Plotting a Map of Where our Float has Travelled<a class="anchor" aria-label="anchor" href="#plotting-a-map-of-where-our-float-has-travelled"></a></h3>
 <p>One of the plots that Argopy can generate is a map showing the
 position of the float every time it surfaced.</p>
-<div class="codewrapper sourceCode" id="cb7">
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>float_data <span class="op">=</span> argopy.DataFetcher().<span class="bu">float</span>(<span class="dv">6902746</span>).load()</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>argopy.plot.scatter_map(float_data.index, set_global<span class="op">=</span><span class="va">False</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>float_data <span class="op">=</span> argopy.DataFetcher().<span class="bu">float</span>(<span class="dv">6902746</span>).load()</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>argopy.plot.scatter_map(float_data.index, set_global<span class="op">=</span><span class="va">False</span>)</span></code></pre>
 </div>
 <figure><img src="fig/scatter_map.png" alt="A scatter graph comparing temperature and presssure." class="figure mx-auto d-block"></figure><p>You can also see the same data on an interactive map at <a href="https://fleetmonitoring.euro-argo.eu/float/6902746" class="external-link uri">https://fleetmonitoring.euro-argo.eu/float/6902746</a>. For
 some reason the data returned by ArgoPy for this float is limted to the
@@ -500,10 +439,10 @@ whole Xarray dataset for all our profiles; we can extract this from the
 the variable name which is “TEMP” (or “PSAL” for salinity). This plot
 uses colour to show the temperature and puts depth/pressure on the y
 axis and date on the x axis.</p>
-<div class="codewrapper sourceCode" id="cb8">
+<div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>fig <span class="op">=</span> argopy.plot.scatter_plot(float_data.to_xarray(), <span class="st">'TEMP'</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>fig <span class="op">=</span> argopy.plot.scatter_plot(float_data.to_xarray(), <span class="st">'TEMP'</span>)</span></code></pre>
 </div>
 <figure><img src="fig/temperature_multi_profile.png" alt="A scatter graph from Argopy showing temperature, depth and time." class="figure mx-auto d-block"></figure><div id="find-another-float-to-plot" class="callout challenge">
 <div class="callout-square">
@@ -536,14 +475,14 @@ of the syntax you can use with markdown.</p>
 </button>
 <div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="im">import</span> argopy</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>float_data <span class="op">=</span> argopy.DataFetcher().<span class="bu">float</span>(<span class="dv">7902230</span>).load()</span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>argopy.plot.scatter_map(float_data.index, set_global<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>fig <span class="op">=</span> argopy.plot.scatter_plot(float_data.to_xarray(), <span class="st">'TEMP'</span>)</span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>fig <span class="op">=</span> argopy.plot.scatter_plot(float_data.to_xarray(), <span class="st">'PSAL'</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="im">import</span> argopy</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>float_data <span class="op">=</span> argopy.DataFetcher().<span class="bu">float</span>(<span class="dv">7902230</span>).load()</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>argopy.plot.scatter_map(float_data.index, set_global<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>fig <span class="op">=</span> argopy.plot.scatter_plot(float_data.to_xarray(), <span class="st">'TEMP'</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>fig <span class="op">=</span> argopy.plot.scatter_plot(float_data.to_xarray(), <span class="st">'PSAL'</span>)</span></code></pre>
 </div>
 </div>
 </div>
@@ -603,7 +542,7 @@ library for creating simple visualisations.”</li>
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.18.4" class="external-link">sandpaper (0.18.4)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.9" class="external-link">varnish (1.0.9)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.18.5" class="external-link">sandpaper (0.18.5)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.9" class="external-link">varnish (1.0.9)</a></p>
 		</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -625,8 +564,8 @@ library for creating simple visualisations.”</li>
   "url": "https://noc-oi.github.io/python-novice-esces/03-matplotlib.html",
   "identifier": "https://noc-oi.github.io/python-novice-esces/03-matplotlib.html",
   "dateCreated": "2025-10-01",
-  "dateModified": "2025-10-07",
-  "datePublished": "2026-01-27"
+  "dateModified": "2026-02-02",
+  "datePublished": "2026-02-02"
 }
 
   </script><script>
