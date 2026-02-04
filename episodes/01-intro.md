@@ -88,6 +88,13 @@ patient_id = '001'
 
 ## Using Variables in Python
 
+To change the value of the `weight_kg` variable, we have to
+**assign** `weight_kg` a new value using the equals `=` sign:
+
+```python
+weight_kg = 65.0
+```
+
 Once we have data stored with variable names, we can make use of it in calculations.
 We may want to store our patient's weight in pounds as well as kilograms:
 
@@ -116,7 +123,7 @@ print(patient_id)
 
 
 ```output
-132.66
+143.0
 inflam_001
 ```
 
@@ -135,7 +142,7 @@ print(patient_id, 'weight in kilograms:', weight_kg)
 ```
 
 ```output
-inflam_001 weight in kilograms: 60.3
+inflam_001 weight in kilograms: 65.0
 ```
 
 
@@ -144,7 +151,7 @@ We can also call a function inside of another
 For example, Python has a built-in function called `type` that tells you a value's data type:
 
 ```python
-print(type(60.3))
+print(type(65.0))
 print(type(patient_id))
 ```
 
@@ -152,43 +159,6 @@ print(type(patient_id))
 ```output
 <class 'float'>
 <class 'str'>
-```
-
-
-Moreover, we can do arithmetic with variables right inside the `print` function:
-
-```python
-print('weight in pounds:', 2.2 * weight_kg)
-```
-
-
-```output
-weight in pounds: 132.66
-```
-
-
-The above command, however, did not change the value of `weight_kg`:
-```python
-print(weight_kg)
-```
-
-
-```output
-60.3
-```
-
-
-To change the value of the `weight_kg` variable, we have to
-**assign** `weight_kg` a new value using the equals `=` sign:
-
-```python
-weight_kg = 65.0
-print('weight in kilograms is now:', weight_kg)
-```
-
-
-```output
-weight in kilograms is now: 65.0
 ```
 
 
