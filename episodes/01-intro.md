@@ -170,11 +170,9 @@ assigning a value to a variable is like putting that sticky note on a particular
 ![](fig/python-sticky-note-variables-01.svg){alt="Value of 65.0 with weight_kg label stuck on it"}
 
 Using this analogy, we can investigate how assigning a value to one variable
-does **not** change values of other, seemingly related, variables.  For
-example, let's store the subject's weight in pounds in its own variable:
+does **not** change values of other, seemingly related, variables.  Let's look at the creation of the `weight_lb` variable as an example:
 
 ```python
-# There are 2.2 pounds per kilogram
 weight_lb = 2.2 * weight_kg
 print('weight in kilograms:', weight_kg, 'and in pounds:', weight_lb)
 ```
@@ -187,7 +185,7 @@ weight in kilograms: 65.0 and in pounds: 143.0
 
 ![](fig/python-sticky-note-variables-02.svg){alt="Value of 65.0 with label weight_kg stuck on it, and value of 143.0 with label weight_lb stuck on it"}
 
-Similar to above, the expression `2.2 * weight_kg` is evaluated to `143.0`,
+As above, the expression `2.2 * weight_kg` is evaluated to `143.0`,
 and then this value is assigned to the variable `weight_lb` (i.e. the sticky
 note `weight_lb` is placed on `143.0`). At this point, each variable is
 "stuck" to completely distinct and unrelated values.
@@ -218,7 +216,12 @@ it is not updated when we change `weight_kg`.
 Everything in a line of code following the '#' symbol is a
 [comment](learners/reference.md#comment) that is ignored by Python.
 Comments allow programmers to leave explanatory notes for other
-programmers or their future selves.
+programmers or their future selves. As an example:
+
+```python
+# There are 2.2 pounds per kilogram
+weight_lb = 2.2 * weight_kg
+```
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
