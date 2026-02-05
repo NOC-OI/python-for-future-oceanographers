@@ -28,19 +28,6 @@ that can be called upon when needed.
 
 ## Loading data with ArgoPy
 
-To begin processing the Argo data, we need to load it into Python.
-We can do that using a library called
-[NumPy](https://numpy.org/doc/stable "NumPy Documentation"), which stands for Numerical Python.
-In general, you should use this library when you want to do fancy things with lots of numbers,
-especially if you have matrices or arrays. To tell Python that we'd like to start using NumPy,
-we need to [import](learners/reference.md#import) it:
-
-```python
-import numpy
-```
-
-
-
 All of the data recorded by Argo floats is sent to a 
 Data Assembly Centre (DAC). After some checks of the data have been made it is sent to a Global Data Assembly Centre (GDAC).
 There are two of these, one in the USA and one in France, but they both hold a copy of all of the Argo data ever received. 
@@ -122,7 +109,7 @@ end of the command; for example, to get temperature we add `.TEMP`.
 ```python
 argopy.DataFetcher().profile(6902746, 12).to_xarray().TEMP
 ```
-Now we have something which just looks like real data. However one last thing, the type of this data is `xarray.DataArray` not `numpy.ndarray`.
+Now we have something which just looks like real data. However one last thing, the type of this data is `xarray.DataArray` not `numpy.ndarray`. 
 To do that final conversion we add `.values` on the end (note that there's no brackets on this as this is a variable name not a function).
 
 ```python
