@@ -8,7 +8,6 @@ exercises: 10
 
 - "Explain what a library is and what libraries are used for."
 - "Import a Python library and use the functions it contains."
-- "Read tabular data from a file into a program."
 - "Select individual values and subsections from data."
 - "Perform operations on arrays of data."
 
@@ -16,7 +15,7 @@ exercises: 10
 
 ::::::::::::::::::::::::::::::::::::::::::::  questions
 
-- "How can I process tabular data files in Python?"
+
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -26,6 +25,137 @@ Similarly, while a lot of powerful, general tools are built into Python,
 specialized tools built up from these basic units live in
 [libraries](learners/reference.md#library)
 that can be called upon when needed.
+
+## Loading data with ArgoPy
+
+To begin processing the Argo data, we need to load it into Python.
+We can do that using a library called
+[NumPy](https://numpy.org/doc/stable "NumPy Documentation"), which stands for Numerical Python.
+In general, you should use this library when you want to do fancy things with lots of numbers,
+especially if you have matrices or arrays. To tell Python that we'd like to start using NumPy,
+we need to [import](learners/reference.md#import) it:
+
+```python
+import numpy
+```
+
+
+
+All of the data recorded by Argo floats is sent to a 
+Data Assembly Centre (DAC). After some checks of the data have been made it is sent to a Global Data Assembly Centre (GDAC).
+There are two of these, one in the USA and one in France, but they both hold a copy of all of the Argo data ever received. 
+To make accessing the data easy from Python a special library called `argopy` has been developed. This can load data directly
+from one of the GDACs and turn it into a Numpy array. This saves us having to search through the GDAC, picking the data we want and downloading it to a file on our computer. 
+
+To tell Python that we'd like to start using `argopy`,
+we need to [import](learners/reference.md#import) it:
+
+```python
+import argopy
+```
+Importing a library is like getting a piece of lab equipment out of a storage locker and setting it
+up on the bench. Libraries provide additional functionality to the basic Python package, much like
+a new piece of equipment adds functionality to a lab space. Just like in the lab, importing too
+many libraries can sometimes complicate and slow down your programs - so we only import what we
+need for each program.
+
+::::::::::::::::::::::::::::::::::::::::::  callout
+
+## Functions, Parameters and Return Values
+
+ * In the last episode we looked at using the `print` and `type` functions which are built into Python.
+ * We "call" a function by writing its name followed by a `(`, then we can give the values of any
+parameters that the function might need. If there is more than one of these we separate each of them 
+with a comma. Finally we write a closing `)` to end the function call. 
+```python
+function_name(first_parameter, second_parameter)
+```
+ * Parameters have to be given in the order the function expects them. 
+   Alternatively we can put a name in front of each paraemter followed by an `=` sign and the parameter 
+   value or the name of the variable we are sending.
+```python
+function_name(parameter_name=first_parameter_value)
+```   
+ * Functions can also send data back to the code which called them, this is known as "returning" data
+from a function. 
+ * We can save this return data into a variable to use it again later. If we 
+don't save it into a variable then its value is displayed on the screen. 
+```python
+my_variable = function_name(first_parameter)
+```
+ * When we import a library like `argopy` more functions become available to us. 
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+The `argopy` library has a lot of different features, but we want to use the `DataFetcher` function which gets data from a GDAC. 
+The `ArgoDataFetcher` will return something called a class that has more functions we can call. One of these is called `profile` and that 
+gets an individual profile given a float number and a profile number. The data we've been using came from profile 12 of float number 6902746.
+
+```python
+argopy.DataFetcher().profile(6902746, 12)
+```
+
+If we run the profile function with the float number and profile number we get back a `datafetcher.erddap` object.
+
+
+```output
+<datafetcher.erddap>
+Name: Ifremer erddap Argo data fetcher for floats
+API: https://erddap.ifremer.fr/erddap/
+Domain: phy;WMO6902746
+Performances: cache=False, parallel=False
+User mode: standard
+Dataset: phy
+```
+
+This doesn't contain much useful data, although it does tell us which GDAC supplied the data. To get the actual data we need to call
+yet another function that the `datafetcher.erdapp` object provides called `to_xarray`. This gets the data ready for processing using another
+library called Xarray, which works well with array based data but is very good at working with really big datasets. 
+
+```python
+argopy.DataFetcher().profile(6902746, 12).to_xarray()
+```
+
+Now we get a lot more information including a list of what data variables this float has. To get one of those we add its name to the 
+end of the command; for example, to get temperature we add `.TEMP`.
+
+```python
+argopy.DataFetcher().profile(6902746, 12).to_xarray().TEMP
+```
+Now we have something which just looks like real data. However one last thing, the type of this data is `xarray.DataArray` not `numpy.ndarray`.
+To do that final conversion we add `.values` on the end (note that there's no brackets on this as this is a variable name not a function).
+
+```python
+argopy.DataFetcher().profile(6902746, 12).to_xarray().TEMP.values
+```
+
+Let's capture this into a variable called `temp_data` and check it's type.
+
+```python
+temp_data=argopy.DataFetcher().profile(6902746, 12).to_xarray().TEMP.values
+type(temp_data)
+```
+
+and now we have a Numpy array with our temperature data. 
+
+```output
+numpy.ndarray
+```
+
+This should be the same as the 3rd (2nd if you count from zero!) column of our earlier data.
+Let's do a basic check of this by comparing the mean values.
+
+```
+print(temp_data.mean())
+print(data[:,2].mean())
+```
+
+```output
+13.058639
+13.058638888888888
+```
+
+The values are slightly differnent because when they got saved into the CSV file they got rounded a little bit. 
 
 ## Loading data into Python
 
@@ -79,7 +209,7 @@ don't save it into a variable then its value is displayed on the screen.
 ```python
 my_variable = function_name(first_parameter)
 ```
- * When we import a library like `NumpPy` more functions become available to us. 
+ * When we import a library like `argopy` more functions become available to us. 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
