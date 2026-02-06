@@ -109,8 +109,7 @@ end of the command; for example, to get temperature we add `.TEMP`.
 ```python
 argopy.DataFetcher().profile(6902746, 12).to_xarray().TEMP
 ```
-Now we have something which just looks like real data. However one last thing, the type of this data is `xarray.DataArray` not `numpy.ndarray`. 
-To do that final conversion we add `.values` on the end (note that there's no brackets on this as this is a variable name not a function).
+Now, to access just the array of temperature values, we add `.values` on the end (note that there's no brackets on this as this is a variable name not a function).
 
 ```python
 argopy.DataFetcher().profile(6902746, 12).to_xarray().TEMP.values
@@ -123,122 +122,25 @@ temp_data=argopy.DataFetcher().profile(6902746, 12).to_xarray().TEMP.values
 type(temp_data)
 ```
 
-and now we have a Numpy array with our temperature data. 
+Now we have a anarray with our temperature data. 
+
+Let's check its type.
+
+```python
+type(temp_data)
+```
 
 ```output
 numpy.ndarray
 ```
 
-This should be the same as the 3rd (2nd if you count from zero!) column of our earlier data.
-Let's do a basic check of this by comparing the mean values.
+The type of this data is `numpy.ndarray`. (The type of `argopy.DataFetcher().profile(6902746, 12).to_xarray().TEMP` is`xarray.DataArray`.)
 
-```
-print(temp_data.mean())
-print(data[:,2].mean())
-```
-
-```output
-13.058639
-13.058638888888888
-```
-
-The values are slightly differnent because when they got saved into the CSV file they got rounded a little bit. 
-
-## Loading data into Python
-
-To begin processing the Argo data, we need to load it into Python.
-We can do that using a library called
-[NumPy](https://numpy.org/doc/stable "NumPy Documentation"), which stands for Numerical Python.
+[NumPy](https://numpy.org/doc/stable "NumPy Documentation"), like `argopy` is a Python library. It stands for Numerical Python.
 In general, you should use this library when you want to do fancy things with lots of numbers,
-especially if you have matrices or arrays. To tell Python that we'd like to start using NumPy,
-we need to [import](learners/reference.md#import) it:
+especially if you have matrices or arrays.
 
-```python
-import numpy
-```
 
-Importing a library is like getting a piece of lab equipment out of a storage locker and setting it
-up on the bench. Libraries provide additional functionality to the basic Python package, much like
-a new piece of equipment adds functionality to a lab space. Just like in the lab, importing too
-many libraries can sometimes complicate and slow down your programs - so we only import what we
-need for each program.
-
-Before we load any data it can be helpful to tell NumPy not to print all the lines in our data
-since some of our data is quite big and we probably don't want to see every line of it. `NumPy` includes
-a function called `set_printoptions` which we can use to tell `NumPy` how many lines of our data
-to show. 
-
-```python
-numpy.set_printoptions(threshold=10)
-```
-
-::::::::::::::::::::::::::::::::::::::::::  callout
-
-## Functions, Parameters and Return Values
-
- * In the last episode we looked at using the `print` and `type` functions which are built into Python.
- * We "call" a function by writing its name followed by a `(`, then we can give the values of any
-parameters that the function might need. If there is more than one of these we separate each of them 
-with a comma. Finally we write a closing `)` to end the function call. 
-```python
-function_name(first_parameter, second_parameter)
-```
- * Parameters have to be given in the order the function expects them. 
-   Alternatively we can put a name in front of each paraemter followed by an `=` sign and the parameter 
-   value or the name of the variable we are sending.
-```python
-function_name(parameter_name=first_parameter_value)
-```   
- * Functions can also send data back to the code which called them, this is known as "returning" data
-from a function. 
- * We can save this return data into a variable to use it again later. If we 
-don't save it into a variable then its value is displayed on the screen. 
-```python
-my_variable = function_name(first_parameter)
-```
- * When we import a library like `argopy` more functions become available to us. 
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-Once we've imported the `NumpPy` library, we can ask it to read our data file for us:
-
-```python
-numpy.loadtxt(fname='argo_data.csv', delimiter=',', skiprows=1)
-```
-
-But this gives us a FileNotFoundError because we don't have a file called `argo_data.csv` yet.
-```output
----------------------------------------------------------------------------
-FileNotFoundError                         Traceback (most recent call last)
-Cell In[3], line 1
-----> 1 numpy.loadtxt(fname='argo_data2.csv', delimiter=',', skiprows=1)
-...
-```
-
-This file is available from https://raw.githubusercontent.com/NOC-OI/python-for-future-oceanographers/refs/heads/main/data/argo_data.csv.
-
-We can download this using the external command `wget`. This is not part of Python and we can tell
-Jupyter to run it by starting the cell with an `!`. 
-
-```python
-!wget https://raw.githubusercontent.com/NOC-OI/python-for-future-oceanographers/refs/heads/main/data/argo_data.csv
-```
-
-Or we can change the filename to the full web address and Numpy will get the file from the Internet for us.
-
-```python
-numpy.loadtxt(fname='https://raw.githubusercontent.com/NOC-OI/python-for-future-oceanographers/refs/heads/main/data/argo_data.csv', delimiter=',', skiprows=1)
-```
-
-```output
-array([[0.0000000e+00, 3.5025002e+01, 2.8898001e+01, 3.0000000e+00],
-       [1.0000000e+00, 3.5026001e+01, 2.8898001e+01, 4.0000000e+00],
-       [2.0000000e+00, 3.5026001e+01, 2.8896000e+01, 5.0000000e+00],
-       ...,
-       [1.0500000e+02, 3.4988998e+01, 3.7710000e+00, 1.9380000e+03],
-       [1.0600000e+02, 3.4987999e+01, 3.7340000e+00, 1.9630000e+03],
-       [1.0700000e+02, 3.4987999e+01, 3.6930000e+00, 1.9890000e+03]])
-```
 
 
 The expression `numpy.loadtxt(...)` is a
