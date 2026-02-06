@@ -238,7 +238,7 @@ print('first temperature value:', temp_data[0])
 ```output
 first temperature value: 28.898
 ```
-(If our data had two dimensions, we would need to use two indices to refer to one specific value, such as `example_data[0, 2]`.)
+
 
 ```python
 print('middle temperature value:', temp_data[53])
@@ -259,33 +259,6 @@ value is offset by one index from the first value). This is closer to the way
 that computers represent arrays (if you are interested in the historical
 reasons behind counting indices from zero, you can read
 [Mike Hoye's blog post](https://exple.tive.org/blarg/2013/10/22/citation-needed/)).
-As a result,
-if we have an M×N array in Python,
-its indices go from 0 to M-1 on the first axis
-and 0 to N-1 on the second.
-It takes a bit of getting used to,
-but one way to remember the rule is that
-the index is how many steps we have to take from the start to get the item we want.
-
-![](fig/python-zero-index.svg){alt="'data' is a 3 by 3 numpy array containing row 0: ['A', 'B', 'C'], row 1: ['D', 'E', 'F'], and
-row 2: ['G', 'H', 'I']. Starting in the upper left hand corner, data[0, 0] = 'A', data[0, 1] = 'B',
-data[0, 2] = 'C', data[1, 0] = 'D', data[1, 1] = 'E', data[1, 2] = 'F', data[2, 0] = 'G',
-data[2, 1] = 'H', and data[2, 2] = 'I',
-in the bottom right hand corner."}
-
-::::::::::::::::::::::::::::::::::::::::::  callout
-
-## In the Corner
-What may also surprise you is that when Python displays an array,
-it shows the element with index `[0, 0]` in the upper left corner
-rather than the lower left.
-This is consistent with the way mathematicians draw matrices
-but different from the Cartesian coordinates.
-The indices are (row, column) instead of (column, row) for the same reason,
-which can be confusing when plotting data.
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
 
 
 
@@ -309,95 +282,6 @@ print(sal_data[107])
 ```
 
 :::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-
-
-## Slicing data
-An index like `[53]` selects a single element of a 1D array,
-but we can select whole sections as well.
-For example,
-we can select the Argo temperature data for the first five readings like this:
-
-```python
-print(temp_data[0:5])
-```
-
-
-```output
-[28.898 28.898 28.896 28.893 28.892]
-```
-
-
-The [slice](learners/reference.md#slice) `0:5` means, "Start at index 0 and go up to,
-but not including, index 5". Again, the up-to-but-not-including takes a bit of getting used to,
-but the rule is that the difference between the upper and lower bounds is the number of values in
-the slice.
-
-We don't have to start slices at 0:
-
-```python
-print(temp_data[5:10])
-```
-
-
-```output
-[28.896 28.902 28.901 28.907 28.859]
-```
-
-
-We also don't have to include the upper and lower bound on the slice.  If we don't include the lower
-bound, Python uses 0 by default; if we don't include the upper, the slice runs to the end of the
-axis, and if we don't include either (i.e., if we use ':' on its own), the slice includes
-everything:
-
-```python
-first_five = temp_data[:5]
-print('Temperature data from first five readings is:')
-print(first_five)
-```
-
-```output
-Temperature data from first five readings is:
-[28.898 28.898 28.896 28.893 28.892]
-```
-
-:::::::::::::::::::::::::::::::::::::::  challenge
-
-## Slicing Strings
-
-A section of an array is called a [slice](learners/reference.md#slice).
-We can take slices of character strings as well:
-
-```python
-element = 'oxygen'
-print('first three characters:', element[0:3])
-print('last three characters:', element[3:6])
-```
-
-```output
-first three characters: oxy
-last three characters: gen
-```
-
-
-What is the value of `element[:4]`?
-What about `element[4:]`?
-Or `element[:]`?
-
-:::::::::::::::  solution
-```output
-oxyg
-en
-oxygen
-```
-
-:::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-
 
 
 ## Analyzing data
