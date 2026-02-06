@@ -8,7 +8,7 @@ exercises: 10
 
 - "Explain what a library is and what libraries are used for."
 - "Import a Python library and use the functions it contains."
-- "Select individual values and subsections from data."
+- "Select individual values from data."
 - "Perform operations on arrays of data."
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -384,12 +384,11 @@ Median Temperature: 3.9305999279022217
 ::::::::::::::::::::::::::::::::::::::::::  keypoints
 
 - "Import a library into a program using `import libraryname`."
+- "The `argopy` library can load Argo float data over the internet from the GDAC"
 - "Use the `numpy` library to work with arrays in Python."
 - "The expression `array.shape` gives the shape of an array."
-- "Use `array[x, y]` to select a single element from a 2D array."
+- "Use `array[x]` to select a single element from a 1D array."
 - "Array indices start at 0, not 1."
-- "Use `low:high` to specify a `slice` that includes the indices from `low` to `high-1`."
 - "Use `numpy.mean(array)`, `numpy.max(array)`, and `numpy.min(array)` to calculate simple statistics."
-- "The `argopy` library can load Argo float data over the internet from the GDAC"
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
