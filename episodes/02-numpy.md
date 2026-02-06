@@ -289,22 +289,18 @@ print(sal_data[107])
 
 
 ## Slicing data
-An index like `[53, 2]` selects a single element of an array,
+An index like `[53]` selects a single element of a 1D array,
 but we can select whole sections as well.
 For example,
-we can select the Argo data for the first five readings like this:
+we can select the Argo temperature data for the first five readings like this:
 
 ```python
-print(data[0:5, 0:4])
+print(temp_data[0:5])
 ```
 
 
 ```output
-[[ 0.       35.025002 28.898001  3.      ]
- [ 1.       35.026001 28.898001  4.      ]
- [ 2.       35.026001 28.896     5.      ]
- [ 3.       35.025002 28.893     6.      ]
- [ 4.       35.025002 28.892     7.      ]]
+[28.898 28.898 28.896 28.893 28.892]
 ```
 
 
@@ -316,16 +312,12 @@ the slice.
 We don't have to start slices at 0:
 
 ```python
-print(data[5:10, 1:4])
+print(temp_data[5:10])
 ```
 
 
 ```output
-[[35.027    28.896     8.      ]
- [35.025002 28.902     9.      ]
- [35.026001 28.900999 10.      ]
- [35.027    28.907    16.      ]
- [35.549999 28.858999 26.      ]]
+[28.896 28.902 28.901 28.907 28.859]
 ```
 
 
@@ -335,20 +327,14 @@ axis, and if we don't include either (i.e., if we use ':' on its own), the slice
 everything:
 
 ```python
-first_five = data[:5, 1:]
-print('data from first five readings is:')
+first_five = temp_data[:5]
+print('Temperature data from first five readings is:')
 print(first_five)
 ```
 
-The above example selects rows 0 through 4 and columns 1 through to the end of the array (which gives us the salinity, temperature and depth).
-
 ```output
-data from first five readings is:
-[[35.025002 28.898001  3.      ]
- [35.026001 28.898001  4.      ]
- [35.026001 28.896     5.      ]
- [35.025002 28.893     6.      ]
- [35.025002 28.892     7.      ]]
+Temperature data from first five readings is:
+[28.898 28.898 28.896 28.893 28.892]
 ```
 
 :::::::::::::::::::::::::::::::::::::::  challenge
