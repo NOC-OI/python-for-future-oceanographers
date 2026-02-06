@@ -46,6 +46,21 @@ a new piece of equipment adds functionality to a lab space. Just like in the lab
 many libraries can sometimes complicate and slow down your programs - so we only import what we
 need for each program.
 
+
+The `argopy` library has a lot of different features, but we want to use the `DataFetcher` function which gets data from a GDAC. 
+The `ArgoDataFetcher` will return something called a class that has more functions we can call. One of these is called `profile` and that 
+gets an individual profile given a float number and a profile number. We're going to look at data from profile 12 of float number 6902746.
+
+```python
+argopy.DataFetcher().profile(6902746, 12)
+```
+
+The expression `argopy.DataFetcher().profile(....)` is a
+[function call](learners/reference.md#function-call)
+that asks Python to run the [function](learners/reference.md#function) `profile` which
+belongs to the `DataFetcher` class which, in turn, belongs to the `argopy` library.
+The dot notation in Python is used most of all as an object attribute/property specifier or for invoking its method. `object.property` will give you the object.property value, `object_name.method()` will invoke an object_name method.
+
 ::::::::::::::::::::::::::::::::::::::::::  callout
 
 ## Functions, Parameters and Return Values
@@ -74,20 +89,6 @@ my_variable = function_name(first_parameter)
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-The `argopy` library has a lot of different features, but we want to use the `DataFetcher` function which gets data from a GDAC. 
-The `ArgoDataFetcher` will return something called a class that has more functions we can call. One of these is called `profile` and that 
-gets an individual profile given a float number and a profile number. We're going to look at data from profile 12 of float number 6902746.
-
-```python
-argopy.DataFetcher().profile(6902746, 12)
-```
-
-The expression `argopy.DataFetcher().profile(....)` is a
-[function call](learners/reference.md#function-call)
-that asks Python to run the [function](learners/reference.md#function) `profile` which
-belongs to the `DataFetcher` class which, in turn, belongs to the `argopy` library.
-The dot notation in Python is used most of all as an object attribute/property specifier or for invoking its method. `object.property` will give you the object.property value, `object_name.method()` will invoke an object_name method.
-
 `argopy.DataFetcher().profile` has two [parameters](learners/reference.md#parameter): a float number and a profile number.
 
 If we run the profile function with the float number and profile number we get back a `datafetcher.erddap` object.
@@ -111,7 +112,32 @@ library called Xarray, which works well with array based data but is very good a
 argopy.DataFetcher().profile(6902746, 12).to_xarray()
 ```
 
-Now we get a lot more information including a list of what data variables this float has. To get one of those we add its name to the 
+Now we get a lot more information including a list of what data variables this float has. 
+
+::::::::::::::::::::::::::::::::::::::::::  callout
+
+## Not All Functions Have Input
+Generally, a function uses inputs to produce outputs.
+However, some functions produce outputs without
+needing any input. These functions don't need any parameters, so we just write `()` after the function name. 
+```python
+function_name()
+```
+For example, checking the current time
+doesn't require any input.
+```python
+import time
+print(time.ctime())
+```
+```output
+Sat Mar 26 13:07:33 2016
+```
+We still need parentheses (`()`)
+to tell Python to go and do something for us.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+To get one of those we add its name to the 
 end of the command; for example, to get temperature we add `.TEMP`.
 
 ```python
@@ -371,72 +397,40 @@ oxygen
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::::::::  callout
 
-## Not All Functions Have Input
-Generally, a function uses inputs to produce outputs.
-However, some functions produce outputs without
-needing any input. These functions don't need any parameters, so we just write `()` after the function name. 
-```python
-function_name()
-```
-For example, checking the current time
-doesn't require any input.
-```python
-import time
-print(time.ctime())
-```
-```output
-Sat Mar 26 13:07:33 2016
-```
-We still need parentheses (`()`)
-to tell Python to go and do something for us.
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
 ## Analyzing data
 
 NumPy has several useful functions that take an array as input to perform operations on its values.
-If we want to find the average of all our Argo float data, for example, we can ask NumPy to compute `data`'s mean value:
+If we want to find the average of all our Argo float data, for example, we can ask NumPy to compute `temp_data`'s mean value:
 
 ```python
-print(numpy.mean(data))
+import numpy
+print(numpy.mean(temp_data))
 ```
 
 
 ```output
-219.47419444212963
+13.058639
 ```
 
 
 `mean` is a [function](learners/reference.md#function) that takes
-an array as an [argument](learners/reference.md#argument). Given that our
-array contains the sequence numbers and three different data variables taking the mean of the
-whole array doesn't really make much sense.
-
-We can use slicing to calculate the mean temperature from our dive:
-
-```python
-print(numpy.mean(data[:,2]))
-```
-
-```output
-13.058638888888888
-```
+an array as an [argument](learners/reference.md#argument).
 
 Let's use two other NumPy functions to get some descriptive values about the temperature range.
 
 ```python
-maxval = numpy.max(data[:,2])
-minval = numpy.min(data[:,2])
+maxval = numpy.max(temp_data)
+minval = numpy.min(temp_data)
 
 print('Max temperature:', maxval)
 print('Min temperature:', minval)
 ```
 
-Here we've assigned the return value from `numpy.max(data[:,2])` to the variable `maxval` and the value
-from `numpy.min(data[:,2])` to `minval`. Note that we used `maxval`, rather than just `max` - it's
+Here we've assigned the return value from `numpy.max(data)` to the variable `maxval` and the value
+from `numpy.min(data)` to `minval`. Note that we used `maxval`, rather than just `max` - it's
 not good practice to use variable names that are the same as [Python keywords](https://docs.python.org/3/reference/lexical_analysis.html#keywords)
 or fuction names.
 
