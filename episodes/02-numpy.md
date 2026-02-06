@@ -76,7 +76,7 @@ my_variable = function_name(first_parameter)
 
 The `argopy` library has a lot of different features, but we want to use the `DataFetcher` function which gets data from a GDAC. 
 The `ArgoDataFetcher` will return something called a class that has more functions we can call. One of these is called `profile` and that 
-gets an individual profile given a float number and a profile number. The data we've been using came from profile 12 of float number 6902746.
+gets an individual profile given a float number and a profile number. We're going to look at data from profile 12 of float number 6902746.
 
 ```python
 argopy.DataFetcher().profile(6902746, 12)
@@ -210,7 +210,7 @@ print('first temperature value:', temp_data[0])
 
 
 ```output
-first value in data: 28.898
+first temperature value: 28.898
 ```
 (If our data had two dimensions, we would need to use two indices to refer to one specific value, such as `example_data[0, 2]`.)
 
@@ -220,7 +220,7 @@ print('middle temperature value:', temp_data[53])
 
 
 ```output
-middle value in data: 9.876
+middle temperature value: 9.876
 ```
 
 The expression `temp_data[53]` accesses the 54th element, not 
@@ -266,32 +266,21 @@ which can be confusing when plotting data.
 :::::::::::::::::::::::::::::::::::::::  challenge
 ## Explore the data
 
-If you haven't already, download the data we have been using with the `wget` command:
-
-`!wget https://raw.githubusercontent.com/NOC-OI/python-for-future-oceanographers/refs/heads/main/data/argo_data.csv`
-
-You should then see a file called `argo_data.csv` appear in the file manager on the left hand side of your screen.
-Click on this file and open it.
-
-What values do columns 1, 2 and 3 represent?
-
-Now load the data using NumPy and write some Python code to read from the data. 
-What is the temperature on the last row of the data?
-
+If you haven't already, write some Python code to load in the data from profile 12 of float number 6902746. 
+What is the last salinity value? (Salinity is called PSAL, as temperature was called TEMP.)
 
 :::::::::::::::  solution
 
-Column 1 is salinity, column 2 is temperature and column 3 is pressure. 
-
-We can find the final temperature value on row 107, column 2 (counting from zero).
 ```python
-import numpy
-data = numpy.loadtxt(fname="argo_data.csv", delimiter=',', skiprows=1)
-#there are 108 rows to the data, so row number 107 is the last one because we started from 0
-print(data[107,2])
+import argopy
+sal_data = argopy.DataFetcher().profile(6902746, 12).to_xarray().PSAL.values
+#there are 108 elements to the data, so we use 107 as our index because we started from 0
+print(sal_data[107])
 ```
 
-The temperature value on the last row is 3.693 degrees celcius.
+```output
+34.988
+```
 
 :::::::::::::::::::::::::
 
