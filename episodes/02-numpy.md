@@ -147,62 +147,25 @@ we can print the variable's value:
 print(temp_data)
 ```
 
-Now we have a anarray with our temperature data. 
+Now we have a an array with our temperature data. 
 
 Let's check its type.
 
 ```python
-type(temp_data)
+print(type(temp_data))
 ```
-
-```output
-numpy.ndarray
-```
-
-The type of this data is `numpy.ndarray`. (The type of `argopy.DataFetcher().profile(6902746, 12).to_xarray().TEMP` is `xarray.DataArray`.)
-
-[NumPy](https://numpy.org/doc/stable "NumPy Documentation"), like `argopy` is a Python library. It stands for Numerical Python.
-In general, you should use this library when you want to do fancy things with lots of numbers,
-especially if you have matrices or arrays.
-
-
-
-
-
-
-
-
-
-
-```output
-[[0.0000000e+00 3.5025002e+01 2.8898001e+01 3.0000000e+00]
- [1.0000000e+00 3.5026001e+01 2.8898001e+01 4.0000000e+00]
- [2.0000000e+00 3.5026001e+01 2.8896000e+01 5.0000000e+00]
- ...
- [1.0500000e+02 3.4988998e+01 3.7710000e+00 1.9380000e+03]
- [1.0600000e+02 3.4987999e+01 3.7340000e+00 1.9630000e+03]
- [1.0700000e+02 3.4987999e+01 3.6930000e+00 1.9890000e+03]]
-```
-
-
-Now that the data are in memory,
-we can manipulate them.
-First,
-let's ask what [type](learners/reference.md#type) of thing `data` refers to:
-
-```python
-print(type(data))
-```
-
 
 ```output
 <class 'numpy.ndarray'>
 ```
 
+The output tells us that `temp_data` currently refers to a NumPy array, the functionality for which is provided by the NumPy library. (The type of `argopy.DataFetcher().profile(6902746, 12).to_xarray().TEMP` is `xarray.DataArray`.)
 
-The output tells us that `data` currently refers to a NumPy array, the functionality for which is provided by the NumPy library.
+[NumPy](https://numpy.org/doc/stable "NumPy Documentation"), like `argopy` is a Python library. It stands for Numerical Python.
+In general, you should use this library when you want to do fancy things with lots of numbers,
+especially if you have matrices or arrays.
+
 These data correspond to Argo float data. Each row represents one reading and the columns are the different data values.
-
 
 ::::::::::::::::::::::::::::::::::::::::::  callout
 
