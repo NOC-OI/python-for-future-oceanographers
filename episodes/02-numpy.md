@@ -177,10 +177,10 @@ thing inside the array.
 We can find out the type
 of the data contained in the NumPy array.
 ```python
-print(data.dtype)
+print(temp_data.dtype)
 ```
 ```output
-float64
+float32
 ```
 This tells us that the NumPy array's elements are
 [floating-point numbers](learners/reference.md#floating-point-number).
@@ -189,35 +189,33 @@ This tells us that the NumPy array's elements are
 With the following command, we can see the array's [shape](learners/reference.md#shape):
 
 ```python
-print(data.shape)
+print(temp_data.shape)
 ```
 
 
 ```output
-(108, 4)
+(108,)
 ```
 
 
-The output tells us that the `data` array variable contains 108 rows and 4 columns
- (sequence number, conductivity/salinity, temperature and pressure/depth). 
+The output tells us that the `temp_data` array variable contains 108 elements in a 1D array. 
 
 If we want to get a single number from the array, we must provide an
 [index](learners/reference.md#index) in square brackets after the variable name, just as we
-do in math when referring to an element of a matrix.  Our data has two dimensions, so
-we will need to use two indices to refer to one specific value:
+do in math when referring to an element of a matrix.
 
 ```python
-print('first temperature value in data:', data[0, 2])
+print('first temperature value:', temp_data[0])
 ```
 
 
 ```output
-first value in data: 28.898001
+first value in data: 28.898
 ```
-
+(If our data had two dimensions, we would need to use two indices to refer to one specific value, such as `example_data[0, 2]`.)
 
 ```python
-print('middle temperature value in data:', data[53, 2])
+print('middle temperature value:', temp_data[53])
 ```
 
 
@@ -225,9 +223,8 @@ print('middle temperature value in data:', data[53, 2])
 middle value in data: 9.876
 ```
 
-
-The expression `data[53, 2]` accesses the element at the 54th row and 3rd column not 
-the 53rd row and 2nd column as you might think. 
+The expression `temp_data[53]` accesses the 54th element, not 
+the 53rd as you might think. 
 Programming languages like Fortran, MATLAB and R start counting at 1
 because that's what human beings have done for thousands of years.
 Languages in the C family (including C++, Java, Perl, and Python) count from 0
