@@ -82,6 +82,14 @@ gets an individual profile given a float number and a profile number. The data w
 argopy.DataFetcher().profile(6902746, 12)
 ```
 
+The expression `argopy.DataFetcher().profile(....)` is a
+[function call](learners/reference.md#function-call)
+that asks Python to run the [function](learners/reference.md#function) `profile` which
+belongs to the `DataFetcher` class which, in turn, belongs to the `argopy` library.
+The dot notation in Python is used most of all as an object attribute/property specifier or for invoking its method. `object.property` will give you the object.property value, `object_name.method()` will invoke an object_name method.
+
+`argopy.DataFetcher().profile` has two [parameters](learners/reference.md#parameter): a float number and a profile number.
+
 If we run the profile function with the float number and profile number we get back a `datafetcher.erddap` object.
 
 
@@ -115,11 +123,28 @@ Now, to access just the array of temperature values, we add `.values` on the end
 argopy.DataFetcher().profile(6902746, 12).to_xarray().TEMP.values
 ```
 
-Let's capture this into a variable called `temp_data` and check it's type.
+Since we haven't told it to do anything else with the function's output,
+the [notebook](learners/reference.md#notebook) displays it.
+In this case,
+that output is the data we just loaded.
+
+Our call to `argopy.DataFetcher().profile` read our file
+but didn't save the data in memory.
+To do that,
+we need to assign the array to a variable. In a similar manner to how we assign a single
+value to a variable, we can also assign an array of values to a variable using the same syntax.
+Let's capture this into a variable called `temp_data`.
 
 ```python
 temp_data=argopy.DataFetcher().profile(6902746, 12).to_xarray().TEMP.values
-type(temp_data)
+```
+
+This statement doesn't produce any output because we've assigned the output to the variable `temp_data`.
+If we want to check that the data have been loaded,
+we can print the variable's value:
+
+```python
+print(temp_data)
 ```
 
 Now we have a anarray with our temperature data. 
@@ -134,7 +159,7 @@ type(temp_data)
 numpy.ndarray
 ```
 
-The type of this data is `numpy.ndarray`. (The type of `argopy.DataFetcher().profile(6902746, 12).to_xarray().TEMP` is`xarray.DataArray`.)
+The type of this data is `numpy.ndarray`. (The type of `argopy.DataFetcher().profile(6902746, 12).to_xarray().TEMP` is `xarray.DataArray`.)
 
 [NumPy](https://numpy.org/doc/stable "NumPy Documentation"), like `argopy` is a Python library. It stands for Numerical Python.
 In general, you should use this library when you want to do fancy things with lots of numbers,
@@ -143,51 +168,10 @@ especially if you have matrices or arrays.
 
 
 
-The expression `numpy.loadtxt(...)` is a
-[function call](learners/reference.md#function-call)
-that asks Python to run the [function](learners/reference.md#function) `loadtxt` which
-belongs to the `numpy` library.
-The dot notation in Python is used most of all as an object attribute/property specifier or for invoking its method. `object.property` will give you the object.property value, `object_name.method()` will invoke an object_name method.
-
-As an example, John Smith is the John that belongs to the Smith family.
-We could use the dot notation to write his name `smith.john`,
-just as `loadtxt` is a function that belongs to the `numpy` library.
-
-`numpy.loadtxt` has two [parameters](learners/reference.md#parameter): the name of the file
-we want to read and the [delimiter](learners/reference.md#delimiter) that separates values
-on a line. These both need to be character strings
-(or [strings](learners/reference.md#string) for short), so we put them in quotes. Notice
-that we also had to tell NumPy to skip the first row, which contains the column titles.
-
-Since we haven't told it to do anything else with the function's output,
-the [notebook](learners/reference.md#notebook) displays it.
-In this case,
-that output is the data we just loaded.
-By default,
-only a few rows and columns are shown
-(with `...` to omit elements when displaying big arrays).
-Note that, to save space when displaying NumPy arrays, Python does not show us trailing zeros,
-so `1.0` becomes `1.`.
-
-Our call to `numpy.loadtxt` read our file
-but didn't save the data in memory.
-To do that,
-we need to assign the array to a variable. In a similar manner to how we assign a single
-value to a variable, we can also assign an array of values to a variable using the same syntax.
-Let's re-run `numpy.loadtxt` and save the returned data:
-
-```python
-data = numpy.loadtxt(fname='argo_data.csv', delimiter=',', skiprows=1)
-```
 
 
-This statement doesn't produce any output because we've assigned the output to the variable `data`.
-If we want to check that the data have been loaded,
-we can print the variable's value:
 
-```python
-print(data)
-```
+
 
 
 ```output
