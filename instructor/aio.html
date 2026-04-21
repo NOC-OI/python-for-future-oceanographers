@@ -6,21 +6,27 @@
 <title>Introduction to Python Programming for Future Oceanographers: All in One View</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="../assets/themetoggle.js"></script><link rel="stylesheet" type="text/css" href="../assets/styles.css">
-<script src="../assets/scripts.js" type="text/javascript"></script><!-- mathjax --><script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      config: ["MMLorHTML.js"],
-      jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML", "output/PreviewHTML"],
-      extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js", "fast-preview.js", "AssistiveMML.js", "a11y/accessibility-menu.js"],
-      TeX: {
-        extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
-      },
-      tex2jax: {
-        inlineMath: [['\\(', '\\)']],
-        displayMath: [ ['$$','$$'], ['\\[', '\\]'] ],
-        processEscapes: true
-      }
-    });
-    </script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><!-- Responsive Favicon for The Carpentries --><link rel="apple-touch-icon" sizes="180x180" href="../favicons/dc/apple-touch-icon.png">
+<script src="../assets/scripts.js" type="text/javascript"></script><!-- mathjax --><!-- NOTE: https://docs.mathjax.org/en/latest/output/mathml.html#mathml-support --><!-- Changes from V2 to V4: https://mathjax.github.io/MathJax-demos-web/convert-configuration/convert-configuration.html
+        Jax output/NativeMML is not yet implemented
+        Jax output/PreviewHTML is not yet implemented
+        Extension fast-preview is not yet implemented (but may be in a future release)
+    --><script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [ ['$$','$$'], ['\\[', '\\]'] ],
+            processEscapes: true,
+            packages: ['base', 'ams', 'noerrors', 'noundefined']
+        },
+        options: {
+            ignoreHtmlClass: 'tex2jax_ignore',
+            processHtmlClass: 'tex2jax_process'
+        },
+        loader: {
+            load: ['a11y/assistive-mml', '[tex]/noerrors']
+        }
+    };
+    </script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><!-- Responsive Favicon for The Carpentries --><link rel="apple-touch-icon" sizes="180x180" href="../favicons/dc/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicons/dc/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="../favicons/dc/favicon-16x16.png">
 <link rel="manifest" href="../favicons/dc/site.webmanifest">
@@ -38,8 +44,8 @@
 </div>
     </div>
     <div class="selector-container">
-      <div id="theme-selector">
-        <li class="nav-item dropdown" id="theme-button-list">
+      <menu class="theme-selector" id="theme-selector-menu">
+<li class="nav-item dropdown theme-button-list" id="theme-button-list-menu">
           <button class="btn btn-link nav-link px-0 px-lg-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static" aria-label="Toggle theme (auto)">
             <svg class="bi my-1 theme-icon-active"><use href="#circle-half"></use></svg><i data-feather="chevron-down"></i>
           </button>
@@ -64,10 +70,8 @@
             </li>
           </ul>
 </li>
-      </div>
-
-
-      <div class="dropdown" id="instructor-dropdown">
+    </menu>
+<div class="dropdown" id="instructor-dropdown">
         <button class="btn btn-secondary dropdown-toggle bordered-button" type="button" id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false">
           <i aria-hidden="true" class="icon" data-feather="eye"></i> Instructor View <i data-feather="chevron-down"></i>
         </button>
@@ -135,29 +139,18 @@
     <a id="search-button" class="btn btn-primary" href="../instructor/aio.html" role="button" aria-label="Search the All In One page">Search the All In One page</a>
   </div>
 <!--/div.container-fluid -->
-</nav><div class="col-md-12 mobile-title">
-  Introduction to Python Programming for Future Oceanographers
-</div>
-
-<aside class="col-md-12 lesson-progress"><div style="width: %" class="percentage">
-    %
-  </div>
-  <div class="progress data">
-    <div class="progress-bar data" role="progressbar" style="width: %" aria-valuenow="" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
-    </div>
-  </div>
-</aside><div class="container">
+</nav><div class="container">
       <div class="row">
         <!-- START: inst/pkgdown/templates/navbar.html -->
 <div id="sidebar-col" class="col-lg-4">
   <div id="sidebar" class="sidebar">
-      <nav aria-labelledby="flush-headingEleven"><button role="button" aria-label="close menu" alt="close menu" aria-expanded="true" aria-controls="sidebar" class="collapse-toggle" data-collapse="Collapse " data-episodes="Episodes ">
+      <nav aria-labelledby="flush-collapse-chapters-toggle"><button role="button" aria-label="Collapse" alt="Collapse" aria-expanded="true" aria-controls="sidebar" class="collapse-toggle" data-collapse="Collapse " data-episodes="Episodes ">
           <i class="search-icon" data-feather="x" role="img"></i>
         </button>
         <div class="sidebar-inner">
           <div class="row mobile-row" id="theme-row-mobile">
-            <div class="col" id="theme-selector">
-              <li class="nav-item dropdown" id="theme-button-list">
+            <menu class="col theme-selector" id="theme-selector-sidebar">
+<li class="nav-item dropdown theme-button-list" id="theme-button-list-sidebar">
                 <button class="btn btn-link nav-link px-0 px-lg-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static" aria-label="Toggle theme (auto)">
                   <svg class="bi my-1 theme-icon-active"><use href="#circle-half"></use></svg><span class="d-lg-none ms-1" id="bd-theme-text">Toggle Theme</span>
                 </button>
@@ -182,19 +175,19 @@
                   </li>
                 </ul>
 </li>
-            </div>
-          </div>
+            </menu>
+</div>
           <div class="row mobile-row">
             <div class="col">
               <div class="sidenav-view-selector">
-                <div class="accordion accordion-flush" id="accordionFlush9">
+                <div class="accordion accordion-flush" id="accordion-instructor-toggle">
                   <div class="accordion-item">
-                    <h2 class="accordion-header" id="flush-headingNine">
-                      <button class="accordion-button collapsed" id="instructor" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseNine" aria-expanded="false" aria-controls="flush-collapseNine">
+                    <h2 class="accordion-header" id="flush-heading-instructor-toggle">
+                      <button class="accordion-button collapsed" id="instructor" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-instructor-toggle" aria-expanded="false" aria-controls="flush-collapse-instructor-toggle">
                         <i id="eye" aria-hidden="true" class="icon" data-feather="eye"></i> Instructor View
                       </button>
                     </h2>
-                    <div id="flush-collapseNine" class="accordion-collapse collapse" aria-labelledby="flush-headingNine" data-bs-parent="#accordionFlush2">
+                    <div id="flush-collapse-instructor-toggle" class="accordion-collapse collapse" data-bs-parent="#accordion-instructor-toggle">
                       <div class="accordion-body">
                         <a href="../aio.html">Learner View</a>
                       </div>
@@ -212,15 +205,15 @@
 </div>
 <!--/div.mobile-row -->
 
-          <div class="accordion accordion-flush" id="accordionFlush11">
+          <div class="accordion accordion-flush" id="accordion-chapters-toggle">
             <div class="accordion-item">
 
-              <button id="chapters" class="accordion-button show" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseEleven" aria-expanded="false" aria-controls="flush-collapseEleven">
-                <h2 class="accordion-header chapters" id="flush-headingEleven">
+              <button id="chapters" class="accordion-button show" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-chapters-toggle" aria-expanded="false" aria-controls="flush-collapse-chapters-toggle">
+                <h2 class="accordion-header chapters" id="flush-heading-chapters-toggle">
                   EPISODES
                 </h2>
               </button>
-              <div id="flush-collapseEleven" class="accordion-collapse show collapse" aria-labelledby="flush-headingEleven" data-bs-parent="#accordionFlush11">
+              <div id="flush-collapse-chapters-toggle" class="accordion-collapse show collapse" data-bs-parent="#accordion-chapters-toggle">
 
                 <div class="accordion-body">
                   <div class="accordion accordion-flush" id="accordionFlush1">
@@ -276,14 +269,14 @@
             </div>
 
             <hr class="half-width">
-<div class="accordion accordion-flush lesson-resources" id="accordionFlush12">
+<div class="accordion accordion-flush lesson-resources" id="accordion-resources-toggle">
               <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingTwelve">
-                  <button class="accordion-button collapsed" id="lesson-resources" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwelve" aria-expanded="false" aria-controls="flush-collapseTwelve">
+                <h2 class="accordion-header" id="flush-heading-resources-toggle">
+                  <button class="accordion-button collapsed" id="lesson-resources" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-resources-toggle" aria-expanded="false" aria-controls="flush-collapse-resources-toggle">
                     RESOURCES
                   </button>
                 </h2>
-                <div id="flush-collapseTwelve" class="accordion-collapse collapse" aria-labelledby="flush-headingTwelve" data-bs-parent="#accordionFlush12">
+                <div id="flush-collapse-resources-toggle" class="accordion-collapse collapse" data-bs-parent="#accordion-resources-toggle">
                   <div class="accordion-body">
                     <ul>
 <li>
@@ -326,7 +319,7 @@
         <!-- START: inst/pkgdown/templates/content-extra.html -->
   <div class="col-xl-8 col-lg-12 primary-content">
     <main id="main-content" class="main-content"><div class="container lesson-content">
-        
+        <h1>All in One View</h1>
         
 <section id="aio-01-intro"><p>Content from <a href="01-intro.html">Python Fundamentals</a></p>
 <hr>
@@ -377,7 +370,7 @@ types.”</li>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="dv">3</span> <span class="op">+</span> <span class="dv">5</span> <span class="op">*</span> <span class="dv">4</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="dv">3</span> <span class="op">+</span> <span class="dv">5</span> <span class="op">*</span> <span class="dv">4</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -393,7 +386,7 @@ weighs 60 kilograms by assigning the value <code>60</code> to a variable
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>weight_kg <span class="op">=</span> <span class="dv">60</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a>weight_kg <span class="op">=</span> <span class="dv">60</span></span></code></pre>
 </div>
 <p>From now on, whenever we use <code>weight_kg</code>, Python will
 substitute the value we assigned to it. In layperson’s terms, <strong>a
@@ -427,7 +420,7 @@ of our patient, we can use a floating point value by executing:</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>weight_kg <span class="op">=</span> <span class="fl">60.3</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a>weight_kg <span class="op">=</span> <span class="fl">60.3</span></span></code></pre>
 </div>
 <p>To create a string, we add single or double quotes around some text.
 To identify and track a patient throughout our study, we can assign each
@@ -435,7 +428,7 @@ person a unique identifier by storing it in a string:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>patient_id <span class="op">=</span> <span class="st">'001'</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a>patient_id <span class="op">=</span> <span class="st">'001'</span></span></code></pre>
 </div>
 </section><section><h2 class="section-heading" id="using-variables-in-python">Using Variables in Python<a class="anchor" aria-label="anchor" href="#using-variables-in-python"></a>
 </h2>
@@ -446,7 +439,7 @@ equals <code>=</code> sign:</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>weight_kg <span class="op">=</span> <span class="fl">65.0</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a>weight_kg <span class="op">=</span> <span class="fl">65.0</span></span></code></pre>
 </div>
 <p>Once we have data stored with variable names, we can make use of it
 in calculations. We may want to store our patient’s weight in pounds as
@@ -454,13 +447,13 @@ well as kilograms:</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>weight_lb <span class="op">=</span> <span class="fl">2.2</span> <span class="op">*</span> weight_kg</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a>weight_lb <span class="op">=</span> <span class="fl">2.2</span> <span class="op">*</span> weight_kg</span></code></pre>
 </div>
 <p>We might decide to add a prefix to our patient identifier:</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>patient_id <span class="op">=</span> <span class="st">'inflam_'</span> <span class="op">+</span> patient_id</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a>patient_id <span class="op">=</span> <span class="st">'inflam_'</span> <span class="op">+</span> patient_id</span></code></pre>
 </div>
 </section><section><h2 class="section-heading" id="built-in-python-functions">Built-in Python functions<a class="anchor" aria-label="anchor" href="#built-in-python-functions"></a>
 </h2>
@@ -471,8 +464,8 @@ the screen, we use the <code>print</code> function:</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="bu">print</span>(weight_lb)</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="bu">print</span>(patient_id)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="bu">print</span>(weight_lb)</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1" aria-label="code-block-9-2"></a><span class="bu">print</span>(patient_id)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -492,7 +485,7 @@ learn more about how functions work in later episodes.</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="bu">print</span>(patient_id, <span class="st">'weight in kilograms:'</span>, weight_kg)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="bu">print</span>(patient_id, <span class="st">'weight in kilograms:'</span>, weight_kg)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -505,8 +498,8 @@ value’s data type:</p>
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(<span class="fl">65.0</span>))</span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(patient_id))</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1" aria-label="code-block-13-1"></a><span class="bu">print</span>(<span class="bu">type</span>(<span class="fl">65.0</span>))</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1" aria-label="code-block-13-2"></a><span class="bu">print</span>(<span class="bu">type</span>(patient_id))</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -527,8 +520,8 @@ related, variables. Let’s look at the creation of the
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>weight_lb <span class="op">=</span> <span class="fl">2.2</span> <span class="op">*</span> weight_kg</span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'weight in kilograms:'</span>, weight_kg, <span class="st">'and in pounds:'</span>, weight_lb)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1" aria-label="code-block-15-1"></a>weight_lb <span class="op">=</span> <span class="fl">2.2</span> <span class="op">*</span> weight_kg</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1" aria-label="code-block-15-2"></a><span class="bu">print</span>(<span class="st">'weight in kilograms:'</span>, weight_kg, <span class="st">'and in pounds:'</span>, weight_lb)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -544,8 +537,8 @@ to completely distinct and unrelated values.</p>
 <div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>weight_kg <span class="op">=</span> <span class="fl">100.0</span></span>
-<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'weight in kilograms is now:'</span>, weight_kg, <span class="st">'and weight in pounds is still:'</span>, weight_lb)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" tabindex="-1" aria-label="code-block-17-1"></a>weight_kg <span class="op">=</span> <span class="fl">100.0</span></span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1" aria-label="code-block-17-2"></a><span class="bu">print</span>(<span class="st">'weight in kilograms is now:'</span>, weight_kg, <span class="st">'and weight in pounds is still:'</span>, weight_lb)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -563,8 +556,8 @@ programmers or their future selves. As an example:</p>
 <div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="co"># There are 2.2 pounds per kilogram</span></span>
-<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>weight_lb <span class="op">=</span> <span class="fl">2.2</span> <span class="op">*</span> weight_kg</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" tabindex="-1" aria-label="code-block-19-1"></a><span class="co"># There are 2.2 pounds per kilogram</span></span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1" aria-label="code-block-19-2"></a>weight_lb <span class="op">=</span> <span class="fl">2.2</span> <span class="op">*</span> weight_kg</span></code></pre>
 </div>
 <div id="check-your-understanding" class="callout challenge">
 <div class="callout-square">
@@ -580,10 +573,10 @@ executing the lines.</p>
 <div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>mass <span class="op">=</span> <span class="fl">47.5</span></span>
-<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>age <span class="op">=</span> <span class="dv">122</span></span>
-<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>mass <span class="op">=</span> mass <span class="op">*</span> <span class="fl">2.0</span></span>
-<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a>age <span class="op">=</span> age <span class="op">-</span> <span class="dv">20</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" tabindex="-1" aria-label="code-block-20-1"></a>mass <span class="op">=</span> <span class="fl">47.5</span></span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1" aria-label="code-block-20-2"></a>age <span class="op">=</span> <span class="dv">122</span></span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1" aria-label="code-block-20-3"></a>mass <span class="op">=</span> mass <span class="op">*</span> <span class="fl">2.0</span></span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1" aria-label="code-block-20-4"></a>age <span class="op">=</span> age <span class="op">-</span> <span class="dv">20</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -619,9 +612,9 @@ executing the lines.</p>
 <div class="codewrapper sourceCode" id="cb22">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a>planet <span class="op">=</span> <span class="st">'Earth'</span></span>
-<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>apples <span class="op">=</span> <span class="dv">5</span></span>
-<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a>distance <span class="op">=</span> <span class="fl">10.5</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" tabindex="-1" aria-label="code-block-22-1"></a>planet <span class="op">=</span> <span class="st">'Earth'</span></span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1" aria-label="code-block-22-2"></a>apples <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1" aria-label="code-block-22-3"></a>distance <span class="op">=</span> <span class="fl">10.5</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -636,9 +629,9 @@ executing the lines.</p>
 <div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(planet))</span>
-<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(apples))</span>
-<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(distance))</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" tabindex="-1" aria-label="code-block-23-1"></a><span class="bu">print</span>(<span class="bu">type</span>(planet))</span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1" aria-label="code-block-23-2"></a><span class="bu">print</span>(<span class="bu">type</span>(apples))</span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1" aria-label="code-block-23-3"></a><span class="bu">print</span>(<span class="bu">type</span>(distance))</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -730,7 +723,7 @@ need to <a href="reference.html#import">import</a> it:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="im">import</span> argopy</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="im">import</span> argopy</span></code></pre>
 </div>
 <p>Importing a library is like getting a piece of lab equipment out of a
 storage locker and setting it up on the bench. Libraries provide
@@ -748,7 +741,7 @@ profile 12 of float number 6902746.</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a>argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>)</span></code></pre>
 </div>
 <p>The expression <code>argopy.DataFetcher().profile(....)</code> is a
 <a href="reference.html#function-call">function call</a> that asks
@@ -779,7 +772,7 @@ the function call.</li>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>function_name(first_parameter, second_parameter)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a>function_name(first_parameter, second_parameter)</span></code></pre>
 </div>
 <ul>
 <li>Parameters have to be given in the order the function expects them.
@@ -790,7 +783,7 @@ variable we are sending.</li>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>function_name(parameter_name<span class="op">=</span>first_parameter_value)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a>function_name(parameter_name<span class="op">=</span>first_parameter_value)</span></code></pre>
 </div>
 <ul>
 <li>Functions can also send data back to the code which called them,
@@ -802,7 +795,7 @@ screen.</li>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>my_variable <span class="op">=</span> function_name(first_parameter)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a>my_variable <span class="op">=</span> function_name(first_parameter)</span></code></pre>
 </div>
 <ul>
 <li>When we import a library like <code>argopy</code> more functions
@@ -836,7 +829,7 @@ datasets.</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>).to_xarray()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a>argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>).to_xarray()</span></code></pre>
 </div>
 <p>Now we get a lot more information including a list of what data
 variables this float has.</p>
@@ -855,14 +848,14 @@ function name.</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>function_name()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a>function_name()</span></code></pre>
 </div>
 <p>For example, checking the current time doesn’t require any input.</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="bu">print</span>(time.ctime())</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="im">import</span> time</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1" aria-label="code-block-9-2"></a><span class="bu">print</span>(time.ctime())</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -879,7 +872,7 @@ example, to get temperature we add <code>.TEMP</code>.</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>).to_xarray().TEMP</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a>argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>).to_xarray().TEMP</span></code></pre>
 </div>
 <p>Now, to access just the array of temperature values, we add
 <code>.values</code> on the end (note that there’s no brackets on this
@@ -887,7 +880,7 @@ as this is a variable name not a function).</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>).to_xarray().TEMP.values</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a>argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>).to_xarray().TEMP.values</span></code></pre>
 </div>
 <p>Since we haven’t told it to do anything else with the function’s
 output, the <a href="reference.html#notebook">notebook</a> displays it.
@@ -901,7 +894,7 @@ the same syntax. Let’s capture this into a variable called
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>temp_data<span class="op">=</span>argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>).to_xarray().TEMP.values</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1" aria-label="code-block-13-1"></a>temp_data<span class="op">=</span>argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>).to_xarray().TEMP.values</span></code></pre>
 </div>
 <p>This statement doesn’t produce any output because we’ve assigned the
 output to the variable <code>temp_data</code>. If we want to check that
@@ -909,14 +902,14 @@ the data have been loaded, we can print the variable’s value:</p>
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="bu">print</span>(temp_data)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1" aria-label="code-block-14-1"></a><span class="bu">print</span>(temp_data)</span></code></pre>
 </div>
 <p>Now we have a an array with our temperature data.</p>
 <p>Let’s check its type.</p>
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(temp_data))</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1" aria-label="code-block-15-1"></a><span class="bu">print</span>(<span class="bu">type</span>(temp_data))</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -949,7 +942,7 @@ out the type of the data contained in the NumPy array.</p>
 <div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="bu">print</span>(temp_data.dtype)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" tabindex="-1" aria-label="code-block-17-1"></a><span class="bu">print</span>(temp_data.dtype)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -965,7 +958,7 @@ numbers</a>.</p>
 <div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="bu">print</span>(temp_data.shape)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" tabindex="-1" aria-label="code-block-19-1"></a><span class="bu">print</span>(temp_data.shape)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -981,7 +974,7 @@ matrix.</p>
 <div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'first temperature value:'</span>, temp_data[<span class="dv">0</span>])</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" tabindex="-1" aria-label="code-block-21-1"></a><span class="bu">print</span>(<span class="st">'first temperature value:'</span>, temp_data[<span class="dv">0</span>])</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -991,7 +984,7 @@ matrix.</p>
 <div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'middle temperature value:'</span>, temp_data[<span class="dv">53</span>])</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" tabindex="-1" aria-label="code-block-23-1"></a><span class="bu">print</span>(<span class="st">'middle temperature value:'</span>, temp_data[<span class="dv">53</span>])</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1027,15 +1020,15 @@ value? (Salinity is called PSAL, as temperature was called TEMP.)</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="im">import</span> argopy</span>
-<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a>sal_data <span class="op">=</span> argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>).to_xarray().PSAL.values</span>
-<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a><span class="co">#there are 108 elements to the data, so we use 107 as our index because we started from 0</span></span>
-<span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a><span class="bu">print</span>(sal_data[<span class="dv">107</span>])</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" tabindex="-1" aria-label="code-block-25-1"></a><span class="im">import</span> argopy</span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1" aria-label="code-block-25-2"></a>sal_data <span class="op">=</span> argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>).to_xarray().PSAL.values</span>
+<span id="cb25-3"><a href="#cb25-3" tabindex="-1" aria-label="code-block-25-3"></a><span class="co">#there are 108 elements to the data, so we use 107 as our index because we started from 0</span></span>
+<span id="cb25-4"><a href="#cb25-4" tabindex="-1" aria-label="code-block-25-4"></a><span class="bu">print</span>(sal_data[<span class="dv">107</span>])</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1056,8 +1049,8 @@ our Argo float data, for example, we can ask NumPy to compute
 <div class="codewrapper sourceCode" id="cb27">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="im">import</span> numpy</span>
-<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="bu">print</span>(numpy.mean(temp_data))</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" tabindex="-1" aria-label="code-block-27-1"></a><span class="im">import</span> numpy</span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1" aria-label="code-block-27-2"></a><span class="bu">print</span>(numpy.mean(temp_data))</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1071,11 +1064,11 @@ about the temperature range.</p>
 <div class="codewrapper sourceCode" id="cb29">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a>maxval <span class="op">=</span> numpy.<span class="bu">max</span>(temp_data)</span>
-<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a>minval <span class="op">=</span> numpy.<span class="bu">min</span>(temp_data)</span>
-<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a></span>
-<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Max temperature:'</span>, maxval)</span>
-<span id="cb29-5"><a href="#cb29-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Min temperature:'</span>, minval)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" tabindex="-1" aria-label="code-block-29-1"></a>maxval <span class="op">=</span> numpy.<span class="bu">max</span>(temp_data)</span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1" aria-label="code-block-29-2"></a>minval <span class="op">=</span> numpy.<span class="bu">min</span>(temp_data)</span>
+<span id="cb29-3"><a href="#cb29-3" tabindex="-1" aria-label="code-block-29-3"></a></span>
+<span id="cb29-4"><a href="#cb29-4" tabindex="-1" aria-label="code-block-29-4"></a><span class="bu">print</span>(<span class="st">'Max temperature:'</span>, maxval)</span>
+<span id="cb29-5"><a href="#cb29-5" tabindex="-1" aria-label="code-block-29-5"></a><span class="bu">print</span>(<span class="st">'Min temperature:'</span>, minval)</span></code></pre>
 </div>
 <p>Here we’ve assigned the return value from
 <code>numpy.max(data)</code> to the variable <code>maxval</code> and the
@@ -1133,22 +1126,22 @@ to find out how to calculate this.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb31">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a>temperatures <span class="op">=</span> argopy.DataFetcher().profile(<span class="dv">5906983</span>, <span class="dv">33</span>).to_xarray().TEMP.values</span>
-<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a></span>
-<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a>maxval <span class="op">=</span> numpy.<span class="bu">max</span>(temperatures)</span>
-<span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a>minval <span class="op">=</span> numpy.<span class="bu">min</span>(temperatures)</span>
-<span id="cb31-5"><a href="#cb31-5" tabindex="-1"></a>meanval <span class="op">=</span> numpy.mean(temperatures)</span>
-<span id="cb31-6"><a href="#cb31-6" tabindex="-1"></a>medianval <span class="op">=</span> numpy.median(temperatures)</span>
-<span id="cb31-7"><a href="#cb31-7" tabindex="-1"></a></span>
-<span id="cb31-8"><a href="#cb31-8" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Max temperature:'</span>, maxval)</span>
-<span id="cb31-9"><a href="#cb31-9" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Min temperature:'</span>, minval)</span>
-<span id="cb31-10"><a href="#cb31-10" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Mean Temperature:'</span>, meanval)</span>
-<span id="cb31-11"><a href="#cb31-11" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Median Temperature:'</span>, medianval)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" tabindex="-1" aria-label="code-block-31-1"></a>temperatures <span class="op">=</span> argopy.DataFetcher().profile(<span class="dv">5906983</span>, <span class="dv">33</span>).to_xarray().TEMP.values</span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1" aria-label="code-block-31-2"></a></span>
+<span id="cb31-3"><a href="#cb31-3" tabindex="-1" aria-label="code-block-31-3"></a>maxval <span class="op">=</span> numpy.<span class="bu">max</span>(temperatures)</span>
+<span id="cb31-4"><a href="#cb31-4" tabindex="-1" aria-label="code-block-31-4"></a>minval <span class="op">=</span> numpy.<span class="bu">min</span>(temperatures)</span>
+<span id="cb31-5"><a href="#cb31-5" tabindex="-1" aria-label="code-block-31-5"></a>meanval <span class="op">=</span> numpy.mean(temperatures)</span>
+<span id="cb31-6"><a href="#cb31-6" tabindex="-1" aria-label="code-block-31-6"></a>medianval <span class="op">=</span> numpy.median(temperatures)</span>
+<span id="cb31-7"><a href="#cb31-7" tabindex="-1" aria-label="code-block-31-7"></a></span>
+<span id="cb31-8"><a href="#cb31-8" tabindex="-1" aria-label="code-block-31-8"></a><span class="bu">print</span>(<span class="st">'Max temperature:'</span>, maxval)</span>
+<span id="cb31-9"><a href="#cb31-9" tabindex="-1" aria-label="code-block-31-9"></a><span class="bu">print</span>(<span class="st">'Min temperature:'</span>, minval)</span>
+<span id="cb31-10"><a href="#cb31-10" tabindex="-1" aria-label="code-block-31-10"></a><span class="bu">print</span>(<span class="st">'Mean Temperature:'</span>, meanval)</span>
+<span id="cb31-11"><a href="#cb31-11" tabindex="-1" aria-label="code-block-31-11"></a><span class="bu">print</span>(<span class="st">'Median Temperature:'</span>, medianval)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1244,11 +1237,11 @@ Argopy.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="im">import</span> argopy</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>argo_data <span class="op">=</span> argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>).to_xarray()</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>temperature <span class="op">=</span> argo_data.TEMP.values</span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>pressure <span class="op">=</span> argo_data.PRES.values</span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>salinity <span class="op">=</span> argo_data.PSAL.values</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="im">import</span> argopy</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a>argo_data <span class="op">=</span> argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>).to_xarray()</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a>temperature <span class="op">=</span> argo_data.TEMP.values</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1" aria-label="code-block-1-4"></a>pressure <span class="op">=</span> argo_data.PRES.values</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1" aria-label="code-block-1-5"></a>salinity <span class="op">=</span> argo_data.PSAL.values</span></code></pre>
 </div>
 </section><section><h2 class="section-heading" id="graphing-temperature-data">Graphing Temperature Data<a class="anchor" aria-label="anchor" href="#graphing-temperature-data"></a>
 </h2>
@@ -1259,8 +1252,8 @@ pyplot’s <code>plot</code> function to plot the temperature data.</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>image <span class="op">=</span> matplotlib.pyplot.plot(temperature)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="im">import</span> matplotlib.pyplot</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a>image <span class="op">=</span> matplotlib.pyplot.plot(temperature)</span></code></pre>
 </div>
 <figure><img src="../fig/temperature_plot.png" alt="A line graph representing the temperature readings from the Argo float data." class="figure mx-auto d-block"></figure><p>The X axis corresponds to each row in the data and the Y axis is
 temperature in degrees celcius.</p>
@@ -1273,9 +1266,9 @@ done with the <code>xlabel</code> and <code>ylabel</code> functions in
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>matplotlib.pyplot.ylabel(<span class="st">"Temperature (Degrees C)"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>matplotlib.pyplot.xlabel(<span class="st">"Reading Number"</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>temperature_plot <span class="op">=</span> matplotlib.pyplot.plot(temperature)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a>matplotlib.pyplot.ylabel(<span class="st">"Temperature (Degrees C)"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a>matplotlib.pyplot.xlabel(<span class="st">"Reading Number"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1" aria-label="code-block-3-3"></a>temperature_plot <span class="op">=</span> matplotlib.pyplot.plot(temperature)</span></code></pre>
 </div>
 <figure><img src="../fig/temperature_plot_with_labels.png" alt="A line graph showing the temperatuer from the Argo data with axes labels." class="figure mx-auto d-block"></figure><div id="plot-the-pressure-data" class="callout challenge">
 <div class="callout-square">
@@ -1294,15 +1287,15 @@ done with the <code>xlabel</code> and <code>ylabel</code> functions in
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>plt.xlabel(<span class="st">"Reading number"</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>plt.ylabel(<span class="st">"Depth (metres)"</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>pres_plot <span class="op">=</span> plt.plot(pressure)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a>plt.xlabel(<span class="st">"Reading number"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1" aria-label="code-block-4-3"></a>plt.ylabel(<span class="st">"Depth (metres)"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1" aria-label="code-block-4-4"></a>pres_plot <span class="op">=</span> plt.plot(pressure)</span></code></pre>
 </div>
 </div>
 </div>
@@ -1327,8 +1320,8 @@ position of the float every time it surfaced.</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>float_data <span class="op">=</span> argopy.DataFetcher().<span class="bu">float</span>(<span class="dv">6902746</span>).load()</span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>argopy.plot.scatter_map(float_data.index, set_global<span class="op">=</span><span class="va">False</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a>float_data <span class="op">=</span> argopy.DataFetcher().<span class="bu">float</span>(<span class="dv">6902746</span>).load()</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1" aria-label="code-block-5-2"></a>argopy.plot.scatter_map(float_data.index, set_global<span class="op">=</span><span class="va">False</span>)</span></code></pre>
 </div>
 <figure><img src="../fig/scatter_map.png" alt="A scatter graph comparing temperature and presssure." class="figure mx-auto d-block"></figure><p>You can also see the same data on an interactive map at <a href="https://fleetmonitoring.euro-argo.eu/float/6902746" class="external-link uri">https://fleetmonitoring.euro-argo.eu/float/6902746</a>. For
 some reason the data returned by ArgoPy for this float is limted to the
@@ -1350,7 +1343,7 @@ axis and date on the x axis.</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>fig <span class="op">=</span> argopy.plot.scatter_plot(float_data.to_xarray(), <span class="st">'TEMP'</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a>fig <span class="op">=</span> argopy.plot.scatter_plot(float_data.to_xarray(), <span class="st">'TEMP'</span>)</span></code></pre>
 </div>
 <figure><img src="../fig/temperature_multi_profile.png" alt="A scatter graph from Argopy showing temperature, depth and time." class="figure mx-auto d-block"></figure><div id="find-another-float-to-plot" class="callout challenge">
 <div class="callout-square">
@@ -1383,16 +1376,16 @@ of the syntax you can use with markdown.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="im">import</span> argopy</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>float_data <span class="op">=</span> argopy.DataFetcher().<span class="bu">float</span>(<span class="dv">7902230</span>).load()</span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>argopy.plot.scatter_map(float_data.index, set_global<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>fig <span class="op">=</span> argopy.plot.scatter_plot(float_data.to_xarray(), <span class="st">'TEMP'</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>fig <span class="op">=</span> argopy.plot.scatter_plot(float_data.to_xarray(), <span class="st">'PSAL'</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="im">import</span> argopy</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1" aria-label="code-block-7-2"></a>float_data <span class="op">=</span> argopy.DataFetcher().<span class="bu">float</span>(<span class="dv">7902230</span>).load()</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1" aria-label="code-block-7-3"></a>argopy.plot.scatter_map(float_data.index, set_global<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1" aria-label="code-block-7-4"></a>fig <span class="op">=</span> argopy.plot.scatter_plot(float_data.to_xarray(), <span class="st">'TEMP'</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1" aria-label="code-block-7-5"></a>fig <span class="op">=</span> argopy.plot.scatter_plot(float_data.to_xarray(), <span class="st">'PSAL'</span>)</span></code></pre>
 </div>
 </div>
 </div>
@@ -1441,7 +1434,7 @@ library for creating simple visualisations.”</li>
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.20.0" class="external-link">sandpaper (0.20.0)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.9" class="external-link">varnish (1.0.9)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.20.1" class="external-link">sandpaper (0.20.1)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.1.0" class="external-link">varnish (1.1.0)</a></p>
 		</div>
 		</footer>
 </div> <!-- / div.container -->
@@ -1464,8 +1457,8 @@ library for creating simple visualisations.”</li>
   "url": "https://noc-oi.github.io/python-novice-esces/instructor/aio.html",
   "identifier": "https://noc-oi.github.io/python-novice-esces/instructor/aio.html",
   "dateCreated": "2025-10-01",
-  "dateModified": "2026-04-14",
-  "datePublished": "2026-04-14"
+  "dateModified": "2026-04-21",
+  "datePublished": "2026-04-21"
 }
 
   </script><script>
