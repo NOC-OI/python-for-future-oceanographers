@@ -2,7 +2,6 @@ name: null
 
 channels:
     - conda-forge
-    - defaults
 
 dependencies:
     - jupyterlab
@@ -13,3 +12,4 @@ dependencies:
     - matplotlib-base
     - matplotlib-inline
     - argopy=1.3.0
+    - erddapy<=3.2.1
