@@ -36,7 +36,7 @@ Let's load some temperature, pressure and salinity data with Argopy.
 
 ```python
 import argopy
-argo_data = argopy.DataFetcher().profile(6902746, 12).to_xarray()
+argo_data = argopy.DataFetcher().profile(6902746, 12).to_dataframe()
 temperature = argo_data.TEMP.values
 pressure = argo_data.PRES.values
 salinity = argo_data.PSAL.values
@@ -115,13 +115,13 @@ and there are a few more after that being shown on the fleetmonitoring website.
 ### Plotting Temperature Across Multiple Profiles
 
 Another useful feature of the Argopy library is that it can plot data from multiple Argo profiles (dives). 
-This can be done by supplying a whole Xarray dataset for all our profiles; we can extract this from
-the `float_data` object we got earlier by calling the `to_xarray()` function on it. This can be passed
+This can be done by supplying a pandas dataframe for all our profiles; we can extract this from
+the `float_data` object we got earlier by calling the `to_dataframe()` function on it. This can be passed
 to the `scatter_plot` function in Argopy. We also have to give it the variable name which is "TEMP" (or "PSAL" for salinity).
 This plot uses colour to show the temperature and puts depth/pressure on the y axis and date on the x axis. 
 
 ```python
-fig = argopy.plot.scatter_plot(float_data.to_xarray(), 'TEMP')
+fig = argopy.plot.scatter_plot(float_data.to_dataframe(), 'TEMP')
 ```
 ![](fig/temperature_multi_profile.png){alt="A scatter graph from Argopy showing temperature, depth and time."}
 
@@ -150,8 +150,8 @@ Look at https://www.markdownguide.org/basic-syntax/ to see some of the syntax yo
 import argopy
 float_data = argopy.DataFetcher().float(7902230).load()
 argopy.plot.scatter_map(float_data.index, set_global=False)
-fig = argopy.plot.scatter_plot(float_data.to_xarray(), 'TEMP')
-fig = argopy.plot.scatter_plot(float_data.to_xarray(), 'PSAL')
+fig = argopy.plot.scatter_plot(float_data.to_dataframe(), 'TEMP')
+fig = argopy.plot.scatter_plot(float_data.to_dataframe(), 'PSAL')
 ```
 
 :::::::::::::::::::::::::
@@ -162,6 +162,6 @@ fig = argopy.plot.scatter_plot(float_data.to_xarray(), 'PSAL')
 ::::::::::::::::::::::::::::::::::::::::::::::  keypoints
 
 - "Use the `pyplot` module from the `matplotlib` library for creating simple visualisations."
-- "Argopy has its own built in visaulisation functions"
+- "Argopy has its own built in visualisation functions"
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
