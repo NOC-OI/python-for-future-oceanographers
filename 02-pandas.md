@@ -112,7 +112,7 @@ library called [Pandas](https://pandas.pydata.org/), which is a data analysis li
 argopy.DataFetcher().profile(6902746, 12).to_dataframe()
 ```
 
-Now we get a lot more information including a table of data variables and values for this float. These data correspond to Argo float data. Each row represents one reading and the columns are the different data values.
+Now we get a lot more information including a dataframe (a table of data) for this float. These data correspond to Argo float data. Each row represents one reading and the columns are the different data values.
 
 ::::::::::::::::::::::::::::::::::::::::::  callout
 
@@ -137,32 +137,19 @@ to tell Python to go and do something for us.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-To get one of those we add its name to the 
-end of the command; for example, to get temperature we add `.TEMP`.
-
-```python
-argopy.DataFetcher().profile(6902746, 12).to_dataframe().TEMP
-```
-Now, to access just the array of temperature values, we add `.values` on the end (note that there's no brackets on this as this is a variable name not a function).
-
-```python
-argopy.DataFetcher().profile(6902746, 12).to_dataframe().TEMP.values
-```
-
 Since we haven't told it to do anything else with the function's output,
 the [notebook](learners/reference.md#notebook) displays it.
 In this case,
-that output is the data we just loaded.
+that output is the data we just loaded. (It is worth noting that only part of the table is automatically displayed.)
 
-Our call to `argopy.DataFetcher().profile` read our file
-but didn't save the data in memory.
+Our call to `argopy.DataFetcher().profile` loads our data but didn't save the data in memory.
 To do that,
-we need to assign the array to a variable. In a similar manner to how we assign a single
-value to a variable, we can also assign an array of values to a variable using the same syntax.
+we need to assign the table to a variable. In a similar manner to how we assign a single
+value to a variable, we can also assign a table of values to a variable using the same syntax.
 Let's capture this into a variable called `temp_data`.
 
 ```python
-temp_data=argopy.DataFetcher().profile(6902746, 12).to_dataframe().TEMP.values
+temp_data=argopy.DataFetcher().profile(6902746, 12).to_dataframe()
 ```
 
 This statement doesn't produce any output because we've assigned the output to the variable `temp_data`.
@@ -173,7 +160,7 @@ we can print the variable's value:
 print(temp_data)
 ```
 
-Now we have a an array with our temperature data. 
+Now we have a table with our data. 
 
 Let's check its type.
 
@@ -182,86 +169,78 @@ print(type(temp_data))
 ```
 
 ```output
-<class 'numpy.ndarray'>
+<class 'pandas.core.frame.DataFrame'>
 ```
 
-The output tells us that `temp_data` currently refers to a NumPy array, the functionality for which is provided by the NumPy library. (The type of `argopy.DataFetcher().profile(6902746, 12).to_dataframe().TEMP` is `pandas.core.series.Series`.)
+The output tells us that `temp_data` currently refers to a Pandas dataframe (as we expect), the functionality for which is provided by the Pandas library.
 
-[NumPy](https://numpy.org/doc/stable "NumPy Documentation"), like `argopy` is a Python library. It stands for Numerical Python.
-In general, you should use this library when you want to do fancy things with lots of numbers,
-especially if you have matrices or arrays.
+## Exploring the data
 
-::::::::::::::::::::::::::::::::::::::::::  callout
-
-## Data Type
-A Numpy array contains one or more elements
-of the same type. The `type` function will only tell you that
-a variable is a NumPy array but won't tell you the type of
-thing inside the array.
-We can find out the type
-of the data contained in the NumPy array.
-```python
-print(temp_data.dtype)
-```
-```output
-float32
-```
-This tells us that the NumPy array's elements are
-[floating-point numbers](learners/reference.md#floating-point-number).
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-With the following command, we can see the array's [shape](learners/reference.md#shape):
+We can use this dataframe to access information about the data contained inside the dataframe. For example, we can find how many rows and columns the table has by using `shape`:
 
 ```python
 print(temp_data.shape)
 ```
 
-
 ```output
-(108,)
+(108, 18)
 ```
 
+This shape matches the information we saw when we printed the dataframe earlier. It tells us that the `temp_data` dataframe variable contains 108 rows and 18 columns. 
 
-The output tells us that the `temp_data` array variable contains 108 elements in a 1D array. 
-
-If we want to get a single number from the array, we must provide an
-[index](learners/reference.md#index) in square brackets after the variable name, just as we
-do in math when referring to an element of a matrix.
-
-```python
-print('first temperature value:', temp_data[0])
-```
-
-
-```output
-first temperature value: 28.898
-```
-
-
-```python
-print('middle temperature value:', temp_data[53])
-```
-
-
-```output
-middle temperature value: 9.876
-```
-
-The expression `temp_data[53]` accesses the 54th element, not 
-the 53rd as you might think. 
+However, we can see from when we printed the dataframe earlier that the last row is number 107. There are 108 rows - the first row is row 0.
 Programming languages like Fortran, MATLAB and R start counting at 1
 because that's what human beings have done for thousands of years.
 Languages in the C family (including C++, Java, Perl, and Python) count from 0
-because it represents an offset from the first value in the array (the second
+because it represents an offset from the first value in an array or list (the second
 value is offset by one index from the first value). This is closer to the way
 that computers represent arrays (if you are interested in the historical
 reasons behind counting indices from zero, you can read
 [Mike Hoye's blog post](https://exple.tive.org/blarg/2013/10/22/citation-needed/)).
 
+We can also use the `info` function to get a summary of the dataframe:
 
+```python
+print(temp_data.info())
+```
+
+As well as telling us how many columns and rows there are, this tells us more information, like the labels of all the columns and the data types of the values inside the table. We have already used the `type` function; however this will only tell you that
+a variable is a dataframe but won't tell you the type of
+data inside the dataframe. The column called `Dtype` tells you the data type. For example, the data in the pressure (`PRES`) column are
+[floating-point numbers](learners/reference.md#floating-point-number). 
+
+If we are interested in one of those columns and want to access it, we do that by adding its label to the 
+end of the command; for example, to get temperature we add `["TEMP"]`. TEMP is in quotes because the column labels are strings and we use square brackets around the column label, just as we
+do in math when referring to an element of a matrix.
+
+```python
+print(temp_data['TEMP'])
+```
+
+This no longer looks like a dataframe. Let us check what type `temp_data['TEMP']` is.
+
+```python
+print(type(temp_data["TEMP"]))
+```
+
+```output
+<class 'pandas.core.series.Series'>
+```
+
+This is a series, which is a one dimensional table (unlike a dataframe, which is a two dimensional table). It looks like a two dimensional table because it is labelled - the first column (in this case called `N_POINTS` contains the labels).
+
+If we are interested in a particular temperature value, say, the first, we can pick this out by using the label of the value we want. In this case, the label is 0. We are going to use the `at` function Pandas provides to do this:
+
+```python
+print('first temperature value:', temp_data["TEMP"].at[0])
+```
+
+```output
+first temperature value: 28.898
+```
 
 :::::::::::::::::::::::::::::::::::::::  challenge
-## Explore the data
+## Explore salinity
 
 If you haven't already, write some Python code to load in the data from profile 12 of float number 6902746. 
 What is the last salinity value? (Salinity is called PSAL, as temperature was called TEMP.)
@@ -270,9 +249,8 @@ What is the last salinity value? (Salinity is called PSAL, as temperature was ca
 
 ```python
 import argopy
-sal_data = argopy.DataFetcher().profile(6902746, 12).to_dataframe().PSAL.values
-#there are 108 elements to the data, so we use 107 as our index because we started from 0
-print(sal_data[107])
+sal_data = argopy.DataFetcher().profile(6902746, 12).to_dataframe()["PSAL"]
+print('last salinity value:' sal_data.at[107])
 ```
 
 ```output
