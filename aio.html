@@ -247,7 +247,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="02-numpy.html">2. Loading and Analyzing Argo Float Data</a>
+        <a href="02-pandas.html">2. Loading and Analyzing Argo Float Data</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -686,11 +686,11 @@ to the code in the function to use.</li>
 </div>
 </div>
 </div>
-</section></section><section id="aio-02-numpy"><p>Content from <a href="02-numpy.html">Loading and Analyzing Argo Float Data</a></p>
+</section></section><section id="aio-02-pandas"><p>Content from <a href="02-pandas.html">Loading and Analyzing Argo Float Data</a></p>
 <hr>
-<p>Last updated on 2026-02-06 |
+<p>Last updated on 2026-10-17 |
 
-        <a href="https://github.com/noc-oi/python-intro-schools/edit/main/episodes/02-numpy.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://github.com/noc-oi/python-intro-schools/edit/main/episodes/02-pandas.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -712,7 +712,7 @@ to the code in the function to use.</li>
 <li>“Explain what a library is and what libraries are used for.”</li>
 <li>“Import a Python library and use the functions it contains.”</li>
 <li>“Select individual values from data.”</li>
-<li>“Perform operations on arrays of data.”</li>
+<li>“Perform operations on tables of data.”</li>
 </ul>
 </div>
 </div>
@@ -733,9 +733,9 @@ a Global Data Assembly Centre (GDAC). There are two of these, one in the
 USA and one in France, but they both hold a copy of all of the Argo data
 ever received. To make accessing the data easy from Python a special
 library called <code>argopy</code> has been developed. This can load
-data directly from one of the GDACs and turn it into a Numpy array. This
-saves us having to search through the GDAC, picking the data we want and
-downloading it to a file on our computer.</p>
+data directly from one of the GDACs. This saves us having to search
+through the GDAC, picking the data we want and downloading it to a file
+on our computer.</p>
 <p>To tell Python that we’d like to start using <code>argopy</code>, we
 need to <a href="reference.html#import">import</a> it:</p>
 <div class="codewrapper sourceCode" id="cb1">
@@ -840,17 +840,18 @@ Dataset: phy</code></pre>
 <p>This doesn’t contain much useful data, although it does tell us which
 GDAC supplied the data. To get the actual data we need to call yet
 another function that the <code>datafetcher.erdapp</code> object
-provides called <code>to_xarray</code>. This gets the data ready for
-processing using another library called Xarray, which works well with
-array based data but is very good at working with really big
-datasets.</p>
+provides called <code>to_dataframe</code>. This gets the data ready for
+processing using another library called <a href="https://pandas.pydata.org/" class="external-link">Pandas</a>, which is a data analysis
+library that is particularly good at handling tabular data.</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a>argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>).to_xarray()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a>argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>).to_dataframe()</span></code></pre>
 </div>
-<p>Now we get a lot more information including a list of what data
-variables this float has.</p>
+<p>Now we get a lot more information including a table of data variables
+and values for this float. These data correspond to Argo float data.
+Each row represents one reading and the columns are the different data
+values.</p>
 <div id="not-all-functions-have-input" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -890,7 +891,7 @@ example, to get temperature we add <code>.TEMP</code>.</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a>argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>).to_xarray().TEMP</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a>argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>).to_dataframe().TEMP</span></code></pre>
 </div>
 <p>Now, to access just the array of temperature values, we add
 <code>.values</code> on the end (note that there’s no brackets on this
@@ -898,7 +899,7 @@ as this is a variable name not a function).</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a>argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>).to_xarray().TEMP.values</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a>argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>).to_dataframe().TEMP.values</span></code></pre>
 </div>
 <p>Since we haven’t told it to do anything else with the function’s
 output, the <a href="reference.html#notebook">notebook</a> displays it.
@@ -912,7 +913,7 @@ the same syntax. Let’s capture this into a variable called
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1" aria-label="code-block-13-1"></a>temp_data<span class="op">=</span>argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>).to_xarray().TEMP.values</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1" aria-label="code-block-13-1"></a>temp_data<span class="op">=</span>argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>).to_dataframe().TEMP.values</span></code></pre>
 </div>
 <p>This statement doesn’t produce any output because we’ve assigned the
 output to the variable <code>temp_data</code>. If we want to check that
@@ -937,14 +938,12 @@ the data have been loaded, we can print the variable’s value:</p>
 <p>The output tells us that <code>temp_data</code> currently refers to a
 NumPy array, the functionality for which is provided by the NumPy
 library. (The type of
-<code>argopy.DataFetcher().profile(6902746, 12).to_xarray().TEMP</code>
-is <code>xarray.DataArray</code>.)</p>
+<code>argopy.DataFetcher().profile(6902746, 12).to_dataframe().TEMP</code>
+is <code>pandas.core.series.Series</code>.)</p>
 <p><a href="https://numpy.org/doc/stable" title="NumPy Documentation" class="external-link">NumPy</a>, like <code>argopy</code> is a
 Python library. It stands for Numerical Python. In general, you should
 use this library when you want to do fancy things with lots of numbers,
 especially if you have matrices or arrays.</p>
-<p>These data correspond to Argo float data. Each row represents one
-reading and the columns are the different data values.</p>
 <div id="data-type" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -1038,13 +1037,13 @@ value? (Salinity is called PSAL, as temperature was called TEMP.)</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" tabindex="-1" aria-label="code-block-25-1"></a><span class="im">import</span> argopy</span>
-<span id="cb25-2"><a href="#cb25-2" tabindex="-1" aria-label="code-block-25-2"></a>sal_data <span class="op">=</span> argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>).to_xarray().PSAL.values</span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1" aria-label="code-block-25-2"></a>sal_data <span class="op">=</span> argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>).to_dataframe().PSAL.values</span>
 <span id="cb25-3"><a href="#cb25-3" tabindex="-1" aria-label="code-block-25-3"></a><span class="co">#there are 108 elements to the data, so we use 107 as our index because we started from 0</span></span>
 <span id="cb25-4"><a href="#cb25-4" tabindex="-1" aria-label="code-block-25-4"></a><span class="bu">print</span>(sal_data[<span class="dv">107</span>])</span></code></pre>
 </div>
@@ -1144,12 +1143,12 @@ to find out how to calculate this.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb31">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" tabindex="-1" aria-label="code-block-31-1"></a>temperatures <span class="op">=</span> argopy.DataFetcher().profile(<span class="dv">5906983</span>, <span class="dv">33</span>).to_xarray().TEMP.values</span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" tabindex="-1" aria-label="code-block-31-1"></a>temperatures <span class="op">=</span> argopy.DataFetcher().profile(<span class="dv">5906983</span>, <span class="dv">33</span>).to_dataframe().TEMP.values</span>
 <span id="cb31-2"><a href="#cb31-2" tabindex="-1" aria-label="code-block-31-2"></a></span>
 <span id="cb31-3"><a href="#cb31-3" tabindex="-1" aria-label="code-block-31-3"></a>maxval <span class="op">=</span> numpy.<span class="bu">max</span>(temperatures)</span>
 <span id="cb31-4"><a href="#cb31-4" tabindex="-1" aria-label="code-block-31-4"></a>minval <span class="op">=</span> numpy.<span class="bu">min</span>(temperatures)</span>
@@ -1200,7 +1199,7 @@ and <code>numpy.min(array)</code> to calculate simple statistics.”</li>
 </div>
 </section></section><section id="aio-03-matplotlib"><p>Content from <a href="03-matplotlib.html">Visualizing Argo Data</a></p>
 <hr>
-<p>Last updated on 2026-02-02 |
+<p>Last updated on 2026-10-17 |
 
         <a href="https://github.com/noc-oi/python-intro-schools/edit/main/episodes/03-matplotlib.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1255,7 +1254,7 @@ Argopy.</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="im">import</span> argopy</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a>argo_data <span class="op">=</span> argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>).to_xarray()</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a>argo_data <span class="op">=</span> argopy.DataFetcher().profile(<span class="dv">6902746</span>, <span class="dv">12</span>).to_dataframe()</span>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a>temperature <span class="op">=</span> argo_data.TEMP.values</span>
 <span id="cb1-4"><a href="#cb1-4" tabindex="-1" aria-label="code-block-1-4"></a>pressure <span class="op">=</span> argo_data.PRES.values</span>
 <span id="cb1-5"><a href="#cb1-5" tabindex="-1" aria-label="code-block-1-5"></a>salinity <span class="op">=</span> argo_data.PSAL.values</span></code></pre>
@@ -1304,7 +1303,7 @@ done with the <code>xlabel</code> and <code>ylabel</code> functions in
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1350,9 +1349,9 @@ the fleetmonitoring website.</p>
 </h3>
 <p>Another useful feature of the Argopy library is that it can plot data
 from multiple Argo profiles (dives). This can be done by supplying a
-whole Xarray dataset for all our profiles; we can extract this from the
+pandas dataframe for all our profiles; we can extract this from the
 <code>float_data</code> object we got earlier by calling the
-<code>to_xarray()</code> function on it. This can be passed to the
+<code>to_dataframe()</code> function on it. This can be passed to the
 <code>scatter_plot</code> function in Argopy. We also have to give it
 the variable name which is “TEMP” (or “PSAL” for salinity). This plot
 uses colour to show the temperature and puts depth/pressure on the y
@@ -1360,7 +1359,7 @@ axis and date on the x axis.</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a>fig <span class="op">=</span> argopy.plot.scatter_plot(float_data.to_xarray(), <span class="st">'TEMP'</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a>fig <span class="op">=</span> argopy.plot.scatter_plot(float_data.to_dataframe(), <span class="st">'TEMP'</span>)</span></code></pre>
 </div>
 <figure><img src="fig/temperature_multi_profile.png" alt="A scatter graph from Argopy showing temperature, depth and time." class="figure mx-auto d-block"></figure><div id="find-another-float-to-plot" class="callout challenge">
 <div class="callout-square">
@@ -1393,7 +1392,7 @@ of the syntax you can use with markdown.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1401,8 +1400,8 @@ of the syntax you can use with markdown.</p>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="im">import</span> argopy</span>
 <span id="cb7-2"><a href="#cb7-2" tabindex="-1" aria-label="code-block-7-2"></a>float_data <span class="op">=</span> argopy.DataFetcher().<span class="bu">float</span>(<span class="dv">7902230</span>).load()</span>
 <span id="cb7-3"><a href="#cb7-3" tabindex="-1" aria-label="code-block-7-3"></a>argopy.plot.scatter_map(float_data.index, set_global<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1" aria-label="code-block-7-4"></a>fig <span class="op">=</span> argopy.plot.scatter_plot(float_data.to_xarray(), <span class="st">'TEMP'</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1" aria-label="code-block-7-5"></a>fig <span class="op">=</span> argopy.plot.scatter_plot(float_data.to_xarray(), <span class="st">'PSAL'</span>)</span></code></pre>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1" aria-label="code-block-7-4"></a>fig <span class="op">=</span> argopy.plot.scatter_plot(float_data.to_dataframe(), <span class="st">'TEMP'</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1" aria-label="code-block-7-5"></a>fig <span class="op">=</span> argopy.plot.scatter_plot(float_data.to_dataframe(), <span class="st">'PSAL'</span>)</span></code></pre>
 </div>
 </div>
 </div>
@@ -1418,7 +1417,7 @@ of the syntax you can use with markdown.</p>
 <ul>
 <li>“Use the <code>pyplot</code> module from the <code>matplotlib</code>
 library for creating simple visualisations.”</li>
-<li>“Argopy has its own built in visaulisation functions”</li>
+<li>“Argopy has its own built in visualisation functions”</li>
 </ul>
 </div>
 </div>
@@ -1474,8 +1473,8 @@ library for creating simple visualisations.”</li>
   "url": "https://noc-oi.github.io/python-novice-esces/aio.html",
   "identifier": "https://noc-oi.github.io/python-novice-esces/aio.html",
   "dateCreated": "2025-10-01",
-  "dateModified": "2026-10-13",
-  "datePublished": "2026-10-13"
+  "dateModified": "2026-10-17",
+  "datePublished": "2026-10-17"
 }
 
   </script><script>
