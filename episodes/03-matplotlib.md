@@ -37,9 +37,9 @@ Let's load some temperature, pressure and salinity data with Argopy.
 ```python
 import argopy
 argo_data = argopy.DataFetcher().profile(6902746, 12).to_dataframe()
-temperature = argo_data.TEMP.values
-pressure = argo_data.PRES.values
-salinity = argo_data.PSAL.values
+temperature = argo_data['TEMP']
+pressure = argo_data['PRES']
+salinity = argo_data['PSAL']
 ```
 
 
