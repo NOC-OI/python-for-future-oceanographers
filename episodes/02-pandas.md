@@ -9,7 +9,7 @@ exercises: 10
 - "Explain what a library is and what libraries are used for."
 - "Import a Python library and use the functions it contains."
 - "Select individual values from data."
-- "Perform operations on arrays of data."
+- "Perform operations on tables of data."
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -32,7 +32,7 @@ All of the data recorded by Argo floats is sent to a
 Data Assembly Centre (DAC). After some checks of the data have been made it is sent to a Global Data Assembly Centre (GDAC).
 There are two of these, one in the USA and one in France, but they both hold a copy of all of the Argo data ever received. 
 To make accessing the data easy from Python a special library called `argopy` has been developed. This can load data directly
-from one of the GDACs and turn it into a Numpy array. This saves us having to search through the GDAC, picking the data we want and downloading it to a file on our computer. 
+from one of the GDACs. This saves us having to search through the GDAC, picking the data we want and downloading it to a file on our computer. 
 
 To tell Python that we'd like to start using `argopy`,
 we need to [import](learners/reference.md#import) it:
@@ -105,14 +105,14 @@ Dataset: phy
 ```
 
 This doesn't contain much useful data, although it does tell us which GDAC supplied the data. To get the actual data we need to call
-yet another function that the `datafetcher.erdapp` object provides called `to_xarray`. This gets the data ready for processing using another
-library called Xarray, which works well with array based data but is very good at working with really big datasets. 
+yet another function that the `datafetcher.erdapp` object provides called `to_dataframe`. This gets the data ready for processing using another
+library called [Pandas](https://pandas.pydata.org/), which is a data analysis library that is particularly good at handling tabular data. 
 
 ```python
-argopy.DataFetcher().profile(6902746, 12).to_xarray()
+argopy.DataFetcher().profile(6902746, 12).to_dataframe()
 ```
 
-Now we get a lot more information including a list of what data variables this float has. 
+Now we get a lot more information including a table of data variables and values for this float. These data correspond to Argo float data. Each row represents one reading and the columns are the different data values.
 
 ::::::::::::::::::::::::::::::::::::::::::  callout
 
@@ -141,12 +141,12 @@ To get one of those we add its name to the
 end of the command; for example, to get temperature we add `.TEMP`.
 
 ```python
-argopy.DataFetcher().profile(6902746, 12).to_xarray().TEMP
+argopy.DataFetcher().profile(6902746, 12).to_dataframe().TEMP
 ```
 Now, to access just the array of temperature values, we add `.values` on the end (note that there's no brackets on this as this is a variable name not a function).
 
 ```python
-argopy.DataFetcher().profile(6902746, 12).to_xarray().TEMP.values
+argopy.DataFetcher().profile(6902746, 12).to_dataframe().TEMP.values
 ```
 
 Since we haven't told it to do anything else with the function's output,
@@ -162,7 +162,7 @@ value to a variable, we can also assign an array of values to a variable using t
 Let's capture this into a variable called `temp_data`.
 
 ```python
-temp_data=argopy.DataFetcher().profile(6902746, 12).to_xarray().TEMP.values
+temp_data=argopy.DataFetcher().profile(6902746, 12).to_dataframe().TEMP.values
 ```
 
 This statement doesn't produce any output because we've assigned the output to the variable `temp_data`.
@@ -185,13 +185,11 @@ print(type(temp_data))
 <class 'numpy.ndarray'>
 ```
 
-The output tells us that `temp_data` currently refers to a NumPy array, the functionality for which is provided by the NumPy library. (The type of `argopy.DataFetcher().profile(6902746, 12).to_xarray().TEMP` is `xarray.DataArray`.)
+The output tells us that `temp_data` currently refers to a NumPy array, the functionality for which is provided by the NumPy library. (The type of `argopy.DataFetcher().profile(6902746, 12).to_dataframe().TEMP` is `pandas.core.series.Series`.)
 
 [NumPy](https://numpy.org/doc/stable "NumPy Documentation"), like `argopy` is a Python library. It stands for Numerical Python.
 In general, you should use this library when you want to do fancy things with lots of numbers,
 especially if you have matrices or arrays.
-
-These data correspond to Argo float data. Each row represents one reading and the columns are the different data values.
 
 ::::::::::::::::::::::::::::::::::::::::::  callout
 
@@ -272,7 +270,7 @@ What is the last salinity value? (Salinity is called PSAL, as temperature was ca
 
 ```python
 import argopy
-sal_data = argopy.DataFetcher().profile(6902746, 12).to_xarray().PSAL.values
+sal_data = argopy.DataFetcher().profile(6902746, 12).to_dataframe().PSAL.values
 #there are 108 elements to the data, so we use 107 as our index because we started from 0
 print(sal_data[107])
 ```
@@ -355,7 +353,7 @@ We haven't calculated median before, search on the internet or look at the NumPy
 :::::::::::::::  solution
 
 ```python
-temperatures = argopy.DataFetcher().profile(5906983, 33).to_xarray().TEMP.values
+temperatures = argopy.DataFetcher().profile(5906983, 33).to_dataframe().TEMP.values
 
 maxval = numpy.max(temperatures)
 minval = numpy.min(temperatures)
