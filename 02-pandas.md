@@ -146,18 +146,18 @@ Our call to `argopy.DataFetcher().profile` loads our data but didn't save the da
 To do that,
 we need to assign the table to a variable. In a similar manner to how we assign a single
 value to a variable, we can also assign a table of values to a variable using the same syntax.
-Let's capture this into a variable called `temp_data`.
+Let's capture this into a variable called `data_table`.
 
 ```python
-temp_data=argopy.DataFetcher().profile(6902746, 12).to_dataframe()
+data_table=argopy.DataFetcher().profile(6902746, 12).to_dataframe()
 ```
 
-This statement doesn't produce any output because we've assigned the output to the variable `temp_data`.
+This statement doesn't produce any output because we've assigned the output to the variable `data_table`.
 If we want to check that the data have been loaded,
 we can print the variable's value:
 
 ```python
-print(temp_data)
+print(data_table)
 ```
 
 Now we have a table with our data. 
@@ -165,28 +165,28 @@ Now we have a table with our data.
 Let's check its type.
 
 ```python
-print(type(temp_data))
+print(type(data_table))
 ```
 
 ```output
 <class 'pandas.core.frame.DataFrame'>
 ```
 
-The output tells us that `temp_data` currently refers to a Pandas dataframe (as we expect), the functionality for which is provided by the Pandas library.
+The output tells us that `data_table` currently refers to a Pandas dataframe (as we expect), the functionality for which is provided by the Pandas library.
 
 ## Exploring the data
 
 We can use this dataframe to access information about the data contained inside the dataframe. For example, we can find how many rows and columns the table has by using `shape`:
 
 ```python
-print(temp_data.shape)
+print(data_table.shape)
 ```
 
 ```output
 (108, 18)
 ```
 
-This shape matches the information we saw when we printed the dataframe earlier. It tells us that the `temp_data` dataframe variable contains 108 rows and 18 columns. 
+This shape matches the information we saw when we printed the dataframe earlier. It tells us that the `data_table` dataframe variable contains 108 rows and 18 columns. 
 
 However, we can see from when we printed the dataframe earlier that the last row is number 107. There are 108 rows - the first row is row 0.
 Programming languages like Fortran, MATLAB and R start counting at 1
@@ -201,7 +201,7 @@ reasons behind counting indices from zero, you can read
 We can also use the `info` function to get a summary of the dataframe:
 
 ```python
-print(temp_data.info())
+print(data_table.info())
 ```
 
 As well as telling us how many columns and rows there are, this tells us more information, like the labels of all the columns and the data types of the values inside the table. We have already used the `type` function; however this will only tell you that
@@ -214,13 +214,14 @@ end of the command; for example, to get temperature we add `["TEMP"]`. TEMP is i
 do in math when referring to an element of a matrix.
 
 ```python
-print(temp_data['TEMP'])
+temp_data = data_table['TEMP']
+print(temp_data)
 ```
 
-This no longer looks like a dataframe. Let us check what type `temp_data['TEMP']` is.
+This no longer looks like a dataframe. Let us check what type `temp_data` is.
 
 ```python
-print(type(temp_data["TEMP"]))
+print(type(temp_data))
 ```
 
 ```output
@@ -232,7 +233,7 @@ This is a series, which is a one dimensional table (unlike a dataframe, which is
 If we are interested in a particular temperature value, say, the first, we can pick this out by using the label of the value we want. In this case, the label is 0. We are going to use the `at` function Pandas provides to do this:
 
 ```python
-print('first temperature value:', temp_data["TEMP"].at[0])
+print('first temperature value:', temp_data.at[0])
 ```
 
 ```output
@@ -264,55 +265,76 @@ print('last salinity value:' sal_data.at[107])
 
 ## Analyzing data
 
-NumPy has several useful functions that take an array as input to perform operations on its values.
-If we want to find the average of all our Argo float data, for example, we can ask NumPy to compute `temp_data`'s mean value:
+Pandas has several useful functions that take a series or dataframe as input to perform operations on its values. We are going to use some of these functions on a series first.
+If we want to find the average of all our Argo float temperature data, for example, we can ask for `temp_data`'s mean value:
 
 ```python
-import numpy
-print(numpy.mean(temp_data))
+print(temp_data.mean())
 ```
-
 
 ```output
 13.058639
 ```
 
-
-`mean` is a [function](learners/reference.md#function) that takes
-an array as an [argument](learners/reference.md#argument).
-
-Let's use two other NumPy functions to get some descriptive values about the temperature range.
+Let's use two other Pandas functions to get some descriptive values about the temperature range.
 
 ```python
-maxval = numpy.max(temp_data)
-minval = numpy.min(temp_data)
+maxval = temp_data.max()
+minval = temp_data.min()
 
 print('Max temperature:', maxval)
 print('Min temperature:', minval)
 ```
 
-Here we've assigned the return value from `numpy.max(data)` to the variable `maxval` and the value
-from `numpy.min(data)` to `minval`. Note that we used `maxval`, rather than just `max` - it's
+Here we've assigned the return value from `temp_data.max()` to the variable `maxval` and the value
+from `temp_data.min()` to `minval`. Note that we used `maxval`, rather than just `max` - it's
 not good practice to use variable names that are the same as [Python keywords](https://docs.python.org/3/reference/lexical_analysis.html#keywords)
 or fuction names.
 
 ```output
-Max temperature: 28.907
-Min temperature: 3.693
+Max temperature: 28.906999588012695
+Min temperature: 3.693000078201294
 ```
+
+We can also use these functions directly on the dataframe, rather than on a series.
+
+```python
+print(data_table.mean(numeric_only=True))
+```
+
+```output
+CYCLE_NUMBER       1.200000e+01
+PLATFORM_NUMBER    6.902746e+06
+POSITION_QC        1.000000e+00
+PRES               7.757407e+02
+PRES_ERROR         2.400000e+00
+PRES_QC            1.000000e+00
+PSAL               3.559740e+01
+PSAL_ERROR         9.999998e-03
+PSAL_QC            1.000000e+00
+TEMP               1.305864e+01
+TEMP_ERROR         2.000000e-03
+TEMP_QC            1.000000e+00
+TIME_QC            1.000000e+00
+LATITUDE           1.880400e+01
+LONGITUDE         -5.923800e+01
+dtype: float64
+```
+
+Here, we have had to provide the `mean` function with an argument to tell it to only calculate the mean of columns which are integers, floats or booleans. Otherwise we will get an error when it tries to calculate the mean of the `Data Mode` and `Direction` columns.
 
 ::::::::::::::::::::::::::::::::::::::::::  callout
 
 ## Getting help on functions
 
-How did we know what functions NumPy has and how to use them?
+How did we know what functions Pandas has and how to use them?
 If you are working in IPython or in a Jupyter Notebook, there is an easy way to find out.
 If you type the name of something followed by a dot, then you can use
 [tab completion](learners/reference.md#tab-completion)
-(e.g. type `numpy.` and then press <kbd>Tab</kbd>)
+(e.g. after typing `import pandas` type `pandas.Dataframe.` and then press <kbd>Tab</kbd>)
 to see a list of all functions and attributes that you can use. After selecting one, you
-can also add a question mark (e.g. `numpy.abs?`), and IPython will return an
-explanation of the method! This is the same as doing `help(numpy.abs)`.
+can also add a question mark (e.g. `pandas.Dataframe.mean?`), and IPython will return an
+explanation of the method! This is the same as doing `help(pandas.Dataframe.mean)`.
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
@@ -325,18 +347,18 @@ https://fleetmonitoring.euro-argo.eu/float/5906983.
 Adapt the code above to load profile number 33 from float 5906983. 
 Calculate it's minimum, maximum, mean and median temperature. 
 
-We haven't calculated median before, search on the internet or look at the NumPy documentation 
-(https://numpy.org/devdocs/reference/routines.statistics.html) to find out how to calculate this.
+We haven't calculated median before, search on the internet or look at the Pandas documentation 
+(https://pandas.pydata.org/pandas-docs/stable/reference/series.html) to find out how to calculate this.
 
 :::::::::::::::  solution
 
 ```python
-temperatures = argopy.DataFetcher().profile(5906983, 33).to_dataframe().TEMP.values
+temperatures = argopy.DataFetcher().profile(5906983, 33).to_dataframe()['TEMP']
 
-maxval = numpy.max(temperatures)
-minval = numpy.min(temperatures)
-meanval = numpy.mean(temperatures)
-medianval = numpy.median(temperatures)
+maxval = temperatures.max()
+minval = temperatures.min()
+meanval = temperatures.mean()
+medianval = temperatures.median()
 
 print('Max temperature:', maxval)
 print('Min temperature:', minval)
@@ -345,10 +367,10 @@ print('Median Temperature:', medianval)
 ```
 
 ```output
-Max temperature: 7.463699817657471
-Min temperature: -0.6674000024795532
-Mean Temperature: 2.9974963312872487
-Median Temperature: 3.9305999279022217
+Max temperature: 7.464000225067139
+Min temperature: -0.6669999957084656
+Mean Temperature: 2.997521
+Median Temperature: 3.930999994277954
 ```
 
 :::::::::::::::::::::::::
@@ -361,10 +383,6 @@ Median Temperature: 3.9305999279022217
 
 - "Import a library into a program using `import libraryname`."
 - "The `argopy` library can load Argo float data over the internet from the GDAC"
-- "Use the `numpy` library to work with arrays in Python."
-- "The expression `array.shape` gives the shape of an array."
-- "Use `array[x]` to select a single element from a 1D array."
-- "Array indices start at 0, not 1."
-- "Use `numpy.mean(array)`, `numpy.max(array)`, and `numpy.min(array)` to calculate simple statistics."
+- "Use the `pandas` library to work with tables of data in Python."
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
