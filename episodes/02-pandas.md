@@ -255,7 +255,7 @@ print('last salinity value:', sal_data.at[107])
 ```
 
 ```output
-34.988
+last salinity value: 34.988
 ```
 
 :::::::::::::::::::::::::
