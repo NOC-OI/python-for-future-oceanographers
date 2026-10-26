@@ -251,7 +251,7 @@ What is the last salinity value? (Salinity is called PSAL, as temperature was ca
 ```python
 import argopy
 sal_data = argopy.DataFetcher().profile(6902746, 12).to_dataframe()["PSAL"]
-print('last salinity value:' sal_data.at[107])
+print('last salinity value:', sal_data.at[107])
 ```
 
 ```output
